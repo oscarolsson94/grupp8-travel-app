@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
+import HelloWorld from "./components/HelloWorld";
 
 function App() {
   const [user, setUser] = useState(
@@ -20,7 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            Hello World
+            <HelloWorld />
           </Route>
           <Route path="/login" exact></Route>
           <Route path="/register" exact></Route>

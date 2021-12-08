@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const BookingSchema = new mongoose.Schema(
   {
-    _id: { type: Schema.ObjectId, auto: true },
     toLocation: { type: String, required: true, unique: true },
     fromLocation: { type: String, required: true },
     userEmail: { type: String, required: true },

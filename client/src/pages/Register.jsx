@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
     Grid,
     Paper,
@@ -8,10 +8,19 @@ import {
     Typography,
 } from "@material-ui/core";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext";
 
 export const Register = () => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const history = useHistory();
+    const { user } = useContext(UserContext);
+
     const paperStyle = {
         padding: 20,
         height: "70vh",
@@ -20,6 +29,26 @@ export const Register = () => {
     };
     const avatarStyle = { backgroundColor: "#1bbd7e" };
     const btnstyle = { margin: "8px 0" };
+
+    const handleRegister = () => {
+        if (password === confirmPassword) {
+            axios
+                .post("http://localhost:3001/api/auth/register", {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                })
+                .then(() => {
+                    console.log("account created");
+                    history.push("/login");
+                });
+        } else {
+            alert("passwords do not match, try again");
+        }
+    };
+
+    if (user.token) return <Redirect to="/" />;
     return (
         <Grid>
             <Paper elevation={10} style={paperStyle}>
@@ -35,6 +64,7 @@ export const Register = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
                 <TextField
                     label="Last name"
@@ -42,6 +72,7 @@ export const Register = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setLastName(e.target.value)}
                 />
                 <TextField
                     label="Email"
@@ -49,6 +80,7 @@ export const Register = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
                     label="Password"
@@ -57,6 +89,7 @@ export const Register = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <TextField
                     label="Confirm Password"
@@ -65,13 +98,14 @@ export const Register = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <Button
-                    type="submit"
                     color="primary"
                     variant="contained"
                     style={btnstyle}
                     fullWidth
+                    onClick={handleRegister}
                 >
                     Register
                 </Button>

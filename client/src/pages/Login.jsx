@@ -17,19 +17,20 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     const { user, setUser } = useContext(UserContext);
 
-    const handleLogin = async () => {
-        await axios.post("http://localhost:3001/api/auth/login", {
-            email: email,
-            password: password,
-        });
-        /* .then((response) => {
+    const handleLogin = () => {
+        axios
+            .post("http://localhost:3001/api/auth/login", {
+                email: email,
+                password: password,
+            })
+            .then((response) => {
                 setUser({
                     firstName: response.data.firstName,
                     lastName: response.data.lastName,
                     email: response.data.email,
                     token: response.data.accessToken,
                 });
-            }); */
+            });
     };
 
     const paperStyle = {

@@ -30,6 +30,9 @@ export const Login = () => {
                     email: response.data.email,
                     token: response.data.accessToken,
                 });
+            })
+            .catch(() => {
+                alert("invalid email or password");
             });
     };
 

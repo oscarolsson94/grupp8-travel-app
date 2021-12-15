@@ -5,6 +5,7 @@ import { UserContext } from "./contexts/UserContext";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Landing } from "./pages/Landing";
+import { LogoutButton } from "./components/LogoutButton";
 
 function App() {
     const [user, setUser] = useState(
@@ -22,6 +23,7 @@ function App() {
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
+            {user.token && <LogoutButton />}
             <Router>
                 <Switch>
                     <Route path="/" exact component={Landing} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
     Grid,
     Paper,
@@ -8,10 +8,30 @@ import {
     Typography,
 } from "@material-ui/core";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../contexts/UserContext";
 
 export const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { user, setUser } = useContext(UserContext);
+
+    const handleLogin = async () => {
+        await axios.post("http://localhost:3001/api/auth/login", {
+            email: email,
+            password: password,
+        });
+        /* .then((response) => {
+                setUser({
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    email: response.data.email,
+                    token: response.data.accessToken,
+                });
+            }); */
+    };
+
     const paperStyle = {
         padding: 20,
         height: "70vh",
@@ -20,6 +40,8 @@ export const Login = () => {
     };
     const avatarStyle = { backgroundColor: "#1bbd7e" };
     const btnstyle = { margin: "8px 0" };
+
+    if (user.token) return <Redirect to="/" />;
     return (
         <Grid>
             <Paper elevation={10} style={paperStyle}>
@@ -30,11 +52,12 @@ export const Login = () => {
                     <h2>Sign In</h2>
                 </Grid>
                 <TextField
-                    label="Username"
-                    placeholder="Enter username"
+                    label="Email"
+                    placeholder="Enter email"
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
                     label="Password"
@@ -43,13 +66,14 @@ export const Login = () => {
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button
-                    type="submit"
                     color="primary"
                     variant="contained"
                     style={btnstyle}
                     fullWidth
+                    onClick={handleLogin}
                 >
                     Sign in
                 </Button>
@@ -64,5 +88,3 @@ export const Login = () => {
         </Grid>
     );
 };
-
-export default Login;

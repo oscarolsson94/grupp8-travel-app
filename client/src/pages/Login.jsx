@@ -8,16 +8,20 @@ import {
     Typography,
 } from "@material-ui/core";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import { Link, Redirect } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const { user, setUser } = useContext(UserContext);
+    const history = useHistory();
 
     const handleLogin = () => {
+        setLoading(true);
         axios
             .post("http://localhost:3001/api/auth/login", {
                 email: email,
@@ -30,8 +34,11 @@ export const Login = () => {
                     email: response.data.email,
                     token: response.data.accessToken,
                 });
+                setLoading(false);
+                history.push("/");
             })
             .catch(() => {
+                setLoading(false);
                 alert("invalid email or password");
             });
     };
@@ -45,7 +52,6 @@ export const Login = () => {
     const avatarStyle = { backgroundColor: "#1bbd7e" };
     const btnstyle = { margin: "8px 0" };
 
-    if (user.token) return <Redirect to="/" />;
     return (
         <Grid>
             <Paper elevation={10} style={paperStyle}>
@@ -81,6 +87,11 @@ export const Login = () => {
                 >
                     Sign in
                 </Button>
+                {loading && (
+                    <Grid align="center">
+                        <CircularProgress color="primary" />
+                    </Grid>
+                )}
                 <Typography>
                     {" "}
                     Don't have an account?{" "}

@@ -6,6 +6,7 @@ import {
     TextField,
     Button,
     Typography,
+    CircularProgress,
 } from "@material-ui/core";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import { Link, Redirect, useHistory } from "react-router-dom";
@@ -18,6 +19,7 @@ export const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
     const { user } = useContext(UserContext);
 
@@ -31,6 +33,7 @@ export const Register = () => {
     const btnstyle = { margin: "8px 0" };
 
     const handleRegister = () => {
+        setLoading(true);
         if (password === confirmPassword) {
             axios
                 .post("http://localhost:3001/api/auth/register", {
@@ -41,9 +44,11 @@ export const Register = () => {
                 })
                 .then(() => {
                     console.log("account created");
+                    setLoading(false);
                     history.push("/login");
                 });
         } else {
+            setLoading(false);
             alert("passwords do not match, try again");
         }
     };
@@ -100,6 +105,11 @@ export const Register = () => {
                     style={{ marginBottom: "10px" }}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                {loading && (
+                    <Grid align="center">
+                        <CircularProgress color="primary" />
+                    </Grid>
+                )}
                 <Button
                     color="primary"
                     variant="contained"

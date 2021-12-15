@@ -6,11 +6,11 @@ import {
     TextField,
     Button,
     Typography,
-    Link,
 } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 export const Login = () => {
     const paperStyle = {
         padding: 20,
@@ -25,7 +25,7 @@ export const Login = () => {
             <Paper elevation={10} style={paperStyle}>
                 <Grid align="center">
                     <Avatar style={avatarStyle}>
-                        <LockOutlinedIcon />
+                        <LockOpenIcon />
                     </Avatar>
                     <h2>Sign In</h2>
                 </Grid>
@@ -34,6 +34,7 @@ export const Login = () => {
                     placeholder="Enter username"
                     fullWidth
                     required
+                    style={{ marginBottom: "10px" }}
                 />
                 <TextField
                     label="Password"
@@ -41,10 +42,7 @@ export const Login = () => {
                     type="password"
                     fullWidth
                     required
-                />
-                <FormControlLabel
-                    control={<Checkbox name="checkedB" color="primary" />}
-                    label="Remember me"
+                    style={{ marginBottom: "10px" }}
                 />
                 <Button
                     type="submit"
@@ -56,11 +54,11 @@ export const Login = () => {
                     Sign in
                 </Button>
                 <Typography>
-                    <Link href="#">Forgot password ?</Link>
-                </Typography>
-                <Typography>
                     {" "}
-                    Do you have an account ?<Link href="#">Sign Up</Link>
+                    Don't have an account?{" "}
+                    <Link style={{ textDecoration: "none" }} to={"/register"}>
+                        Register
+                    </Link>
                 </Typography>
             </Paper>
         </Grid>

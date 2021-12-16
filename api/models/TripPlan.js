@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const TripPlanSchema = new mongoose.Schema(
   {
-    toLocation: { type: String, required: true, unique: true },
+    toLocation: { type: String, required: true },
     fromLocation: { type: String, required: true },
     departureTimeAndDate: { type: String, required: true },
     arrivalTimeAndDate: { type: String, required: true },

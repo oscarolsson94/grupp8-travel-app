@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import bookingsRoutes from "./routes/bookings.js";
+import tripRoutes from "./routes/planTrip.js";
 import cors from "cors";
 
 dotenv.config();
@@ -23,6 +24,8 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/bookings", bookingsRoutes);
+
+app.use("/api/planTrip", tripRoutes)
 
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);

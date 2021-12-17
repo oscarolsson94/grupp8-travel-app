@@ -79,6 +79,8 @@ export const Landing = () => {
                         key={i}
                         style={{
                             display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
                             background: "#1976D2",
                             border: "1px solid grey",
                             borderRadius: 10,
@@ -101,6 +103,14 @@ export const Landing = () => {
                             Framme: {formatDate(trip.arrivalTimeAndDate)}
                             {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
                         </Typography>
+                        <Button
+                            disableElevation
+                            endIcon={<SendIcon />}
+                            variant="contained"
+                            onClick={handleSearch}
+                        >
+                            Köp biljett
+                        </Button>
                     </div>
                 ))}
             </div>

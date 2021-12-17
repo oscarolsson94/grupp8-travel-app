@@ -10,7 +10,7 @@ const navStyles = {
     position: "sticky",
     top: 0,
     width: "100%",
-    background: "#dfe3ee",
+    background: "#274060",
     padding: 10,
     color: "#3F51B5",
     boxSizing: "border-box",
@@ -23,11 +23,11 @@ export const Navbar = () => {
             <Link
                 style={{
                     textDecoration: "none",
-                    color: "#3F51B5",
+                    color: "white",
                 }}
                 to={"/"}
             >
-                <Typography variant="h4">Travel With Us</Typography>
+                <Typography variant="h4">Res med oss</Typography>
             </Link>
             <div
                 style={{
@@ -39,7 +39,7 @@ export const Navbar = () => {
                     style={{
                         paddingRight: 20,
                         textDecoration: "none",
-                        color: "#3F51B5",
+                        color: "white",
                     }}
                     to={"/mypages"}
                 >

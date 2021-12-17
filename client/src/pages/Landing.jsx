@@ -24,7 +24,7 @@ const containerStyle = {
     alignItems: "center",
     minHeight: "40vh",
     width: "50%",
-    background: "#dfe3ee",
+    background: "#5899E2",
     padding: 20,
     borderRadius: 20,
 };
@@ -44,12 +44,16 @@ export const Landing = () => {
 
     const paddingRight = {
         paddingRight: 20,
+        color: "white",
     };
 
     if (!user.token) return <Redirect to="/login" />;
 
     return (
         <div style={heroDivStyle}>
+            <Typography variant="h2" color="white">
+                Sök resa
+            </Typography>
             <div style={containerStyle}>
                 <div
                     style={{
@@ -75,6 +79,7 @@ export const Landing = () => {
                         endIcon={<SendIcon />}
                         variant="contained"
                         onClick={handleSearch}
+                        style={{ background: "#FFA5A5" }}
                     >
                         Sök Resa
                     </Button>

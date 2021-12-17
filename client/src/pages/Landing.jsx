@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
-import { formatDate } from "../utils/helpers";
+import { TripItem } from "../components/Landing/TripItem";
 
 export const Landing = () => {
     const { user } = useContext(UserContext);
@@ -30,89 +30,67 @@ export const Landing = () => {
         width: "100%",
     };
 
+    const containerStyle = {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "40vh",
+        width: "50%",
+        background: "#dfe3ee",
+        padding: 20,
+        borderRadius: 20,
+    };
+
     const paddingRight = {
-        paddingRight: 5,
+        paddingRight: 20,
     };
 
     if (!user.token) return <Redirect to="/login" />;
 
     return (
         <div style={heroDivStyle}>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginBottom: 10,
-                }}
-            >
-                <TextField
-                    style={paddingRight}
-                    label="From"
-                    variant="outlined"
-                    onChange={(e) => setFromLocation(e.target.value)}
-                ></TextField>
-                <TextField
-                    style={paddingRight}
-                    label="To"
-                    variant="outlined"
-                    onChange={(e) => setToLocation(e.target.value)}
-                ></TextField>
-                <Button
-                    endIcon={<SendIcon />}
-                    variant="contained"
-                    onClick={handleSearch}
+            <div style={containerStyle}>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginBottom: 10,
+                    }}
                 >
-                    Sök Resa
-                </Button>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                {trips.map((trip, i) => (
-                    <div
-                        key={i}
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            background: "#1976D2",
-                            border: "1px solid grey",
-                            borderRadius: 10,
-                            padding: 2,
-                            marginBottom: 2,
-                            color: "white",
-                        }}
+                    <TextField
+                        style={paddingRight}
+                        label="From"
+                        variant="outlined"
+                        onChange={(e) => setFromLocation(e.target.value)}
+                    ></TextField>
+                    <TextField
+                        style={paddingRight}
+                        label="To"
+                        variant="outlined"
+                        onChange={(e) => setToLocation(e.target.value)}
+                    ></TextField>
+                    <Button
+                        endIcon={<SendIcon />}
+                        variant="contained"
+                        onClick={handleSearch}
                     >
-                        <Typography paddingRight={2}>
-                            Från: {trip.fromLocation}
-                        </Typography>
-                        <Typography paddingRight={2}>
-                            Till: {trip.toLocation}
-                        </Typography>
-                        <Typography paddingRight={2}>
-                            Avgår: {formatDate(trip.departureTimeAndDate)}
-                            {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
-                        </Typography>
-                        <Typography paddingRight={2}>
-                            Framme: {formatDate(trip.arrivalTimeAndDate)}
-                            {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
-                        </Typography>
-                        <Button
-                            disableElevation
-                            endIcon={<SendIcon />}
-                            variant="contained"
-                            onClick={handleSearch}
-                        >
-                            Köp biljett
-                        </Button>
-                    </div>
-                ))}
+                        Sök Resa
+                    </Button>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    {trips.map((trip, i) => (
+                        <TripItem key={i} trip={trip} />
+                    ))}
+                </div>
             </div>
         </div>
     );

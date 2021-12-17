@@ -8,6 +8,27 @@ import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import { TripItem } from "../components/Landing/TripItem";
 
+const heroDivStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    width: "100%",
+};
+
+const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "40vh",
+    width: "50%",
+    background: "#dfe3ee",
+    padding: 20,
+    borderRadius: 20,
+};
+
 export const Landing = () => {
     const { user } = useContext(UserContext);
     const [trips, setTrips] = useState([]);
@@ -19,27 +40,6 @@ export const Landing = () => {
             `http://localhost:3001/api/planTrip/${fromLocation}/${toLocation}`
         );
         setTrips(response.data);
-    };
-
-    const heroDivStyle = {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        width: "100%",
-    };
-
-    const containerStyle = {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "40vh",
-        width: "50%",
-        background: "#dfe3ee",
-        padding: 20,
-        borderRadius: 20,
     };
 
     const paddingRight = {

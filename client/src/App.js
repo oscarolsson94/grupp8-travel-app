@@ -5,7 +5,18 @@ import { UserContext } from "./contexts/UserContext";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Landing } from "./pages/Landing";
-import { LogoutButton } from "./components/LogoutButton";
+import { TripInfo } from "./pages/TripInfo";
+import { MyPages } from "./pages/MyPages";
+import { Navbar } from "./components/Navbar";
+
+const appStyles = {
+    backgroundColor: "#65AFFF",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+};
 
 function App() {
     const [user, setUser] = useState(
@@ -22,16 +33,20 @@ function App() {
     }, [user]);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {user.token && <LogoutButton />}
-            <Router>
-                <Switch>
-                    <Route path="/" exact component={Landing} />
-                    <Route path="/login" exact component={Login} />
-                    <Route path="/register" exact component={Register}></Route>
-                </Switch>
-            </Router>
-        </UserContext.Provider>
+        <div style={appStyles}>
+            <UserContext.Provider value={{ user, setUser }}>
+                <Router>
+                    {user.token && <Navbar />}
+                    <Switch>
+                        <Route path="/" exact component={Landing} />
+                        <Route path="/login" exact component={Login} />
+                        <Route path="/register" exact component={Register} />
+                        <Route path="/tripinfo" component={TripInfo} />
+                        <Route path="/mypages" exact component={MyPages} />
+                    </Switch>
+                </Router>
+            </UserContext.Provider>
+        </div>
     );
 }
 

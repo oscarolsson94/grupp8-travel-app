@@ -14,9 +14,13 @@ export const LogoutButton = () => {
         });
     };
     return (
-        <Grid align="center">
-            <Button color="primary" variant="contained" onClick={handleLogout}>
-                Sign out
+        <Grid align="center" style={{ paddingRight: 20 }}>
+            <Button
+                style={{ color: "white", borderColor: "white" }}
+                variant="outlined"
+                onClick={handleLogout}
+            >
+                Logga ut
             </Button>
         </Grid>
     );

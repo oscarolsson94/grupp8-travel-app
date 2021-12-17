@@ -9,6 +9,15 @@ import { TripInfo } from "./pages/TripInfo";
 import { MyPages } from "./pages/MyPages";
 import { Navbar } from "./components/Navbar";
 
+const appStyles = {
+    backgroundColor: "#65AFFF",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+};
+
 function App() {
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem("user")) || {
@@ -24,7 +33,7 @@ function App() {
     }, [user]);
 
     return (
-        <div style={{ backgroundColor: "#65AFFF", minHeight: "100vh" }}>
+        <div style={appStyles}>
             <UserContext.Provider value={{ user, setUser }}>
                 <Router>
                     {user.token && <Navbar />}

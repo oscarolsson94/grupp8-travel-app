@@ -3,8 +3,10 @@ import { formatDate } from "../../utils/helpers";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
+import { useHistory } from "react-router-dom";
 
 export const TripItem = ({ trip }) => {
+    const history = useHistory();
     return (
         <div
             style={{
@@ -29,8 +31,13 @@ export const TripItem = ({ trip }) => {
                 Framme: {formatDate(trip.arrivalTimeAndDate)}
                 {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
             </Typography>
-            <Button disableElevation endIcon={<SendIcon />} variant="contained">
-                Köp biljett
+            <Button
+                onClick={() => history.push(`/tripinfo/${trip._id}`)}
+                disableElevation
+                endIcon={<SendIcon />}
+                variant="contained"
+            >
+                Gå till resa
             </Button>
         </div>
     );

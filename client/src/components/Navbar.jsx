@@ -13,14 +13,22 @@ const navStyles = {
     background: "#dfe3ee",
     padding: 10,
     color: "#3F51B5",
+    boxSizing: "border-box",
+    zIndex: 999,
 };
 
 export const Navbar = () => {
     return (
         <div style={navStyles}>
-            <div>
+            <Link
+                style={{
+                    textDecoration: "none",
+                    color: "#3F51B5",
+                }}
+                to={"/"}
+            >
                 <Typography variant="h4">Travel With Us</Typography>
-            </div>
+            </Link>
             <div
                 style={{
                     display: "flex",

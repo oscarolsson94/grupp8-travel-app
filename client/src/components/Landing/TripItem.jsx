@@ -34,6 +34,7 @@ export const TripItem = ({ trip }) => {
             <Button
                 onClick={() => history.push(`/tripinfo/${trip._id}`)}
                 disableElevation
+                style={{ background: "#1976D2" }}
                 endIcon={<SendIcon />}
                 variant="contained"
             >

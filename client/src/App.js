@@ -27,7 +27,7 @@ function App() {
     return (
         <UserContext.Provider value={{ user, setUser }}>
             <Router>
-                <Navbar />
+                {user.token && <Navbar />}
                 <Switch>
                     <Route path="/" exact component={Landing} />
                     <Route path="/login" exact component={Login} />

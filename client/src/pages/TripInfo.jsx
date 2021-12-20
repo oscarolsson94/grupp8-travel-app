@@ -10,6 +10,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { formatDate } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
+import { useHistory } from "react-router-dom";
+
+const PRICES = {
+  YOUTH: 199,
+  ADULT: 399,
+  SENIOR: 249,
+};
 
 const heroDivStyle = {
   display: "flex",
@@ -36,6 +43,10 @@ export const TripInfo = () => {
   const [trip, setTrip] = useState();
   const [ticketType, setTicketType] = useState("Vuxen");
   const [price, setPrice] = useState(0);
+  const [ticketClass, setTicketClass] = useState("2:a klass");
+  const [multiplier, setMultiplier] = useState(1);
+
+  const history = useHistory();
 
   /*   useEffect(async () => {
     const response = await axios.get(
@@ -48,19 +59,20 @@ export const TripInfo = () => {
     /*     const response = await axios.post(
       `http://localhost:3001/api/bookings/
     ); */
+    history.push("/mypages");
   };
 
   const handleChange = (e) => {
     setTicketType(e.target.value);
     switch (e.target.value) {
       case "Pensionär":
-        setPrice(249);
+        setPrice(PRICES.SENIOR);
         break;
       case "Ungdom":
-        setPrice(199);
+        setPrice(PRICES.YOUTH);
         break;
       case "Vuxen":
-        setPrice(399);
+        setPrice(PRICES.ADULT);
         break;
       default:
         setPrice(0);
@@ -86,23 +98,41 @@ export const TripInfo = () => {
             <Typography paddingRight={2}>Avgår: 21/10 - 15:20</Typography>
             <Typography paddingRight={2}>Framme: 21/10 - 15:20</Typography>
           </div>
-          <FormControl sx={{ m: 5, minWidth: 200 }}>
-            <InputLabel id="demo-simple-select-label">Biljettyp</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select-autowidth"
-              value={ticketType}
-              label="Biljettyp"
-              onChange={(e) => handleChange(e)}
-            >
-              <MenuItem value={"Ungdom"}>Ungdom - 199:-</MenuItem>
-              <MenuItem value={"Pensionär"}>Pensionär - 249:-</MenuItem>
-              <MenuItem value={"Vuxen"}>Vuxen - 399:-</MenuItem>
-            </Select>
-          </FormControl>
+          <div>
+            <FormControl sx={{ m: 5, minWidth: 200 }}>
+              <InputLabel>Biljettyp</InputLabel>
+              <Select
+                value={ticketType}
+                label="Biljettyp"
+                onChange={(e) => handleChange(e)}
+              >
+                <MenuItem value={"Ungdom"}>Ungdom - 199:-</MenuItem>
+                <MenuItem value={"Pensionär"}>Pensionär - 249:-</MenuItem>
+                <MenuItem value={"Vuxen"}>Vuxen - 399:-</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl sx={{ m: 5, minWidth: 200 }}>
+              <InputLabel>Klass</InputLabel>
+              <Select
+                value={ticketClass}
+                label="Klass"
+                onChange={(e) => {
+                  setTicketClass(e.target.value);
+                  if (e.target.value === "1:a klass") {
+                    setMultiplier(1.5);
+                  } else {
+                    setMultiplier(1);
+                  }
+                }}
+              >
+                <MenuItem value={"1:a klass"}>1:a klass</MenuItem>
+                <MenuItem value={"2:a klass"}>2:a klass</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           <div>
             <Typography variant="h5" paddingRight={2}>
-              Pris: {price}
+              Pris: {price * multiplier}:-
             </Typography>
           </div>
           <Button

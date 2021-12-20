@@ -4,6 +4,9 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  Step,
+  StepLabel,
+  Stepper,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -86,6 +89,17 @@ export const TripInfo = () => {
           Reseinformation
         </Typography>
         <div style={containerStyle}>
+          <Stepper sx={{ width: "100%" }} activeStep={1} alternativeLabel>
+            <Step>
+              <StepLabel>Sök resa</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Anpassa din resa</StepLabel>
+            </Step>
+            <Step>
+              <StepLabel>Betalning</StepLabel>
+            </Step>
+          </Stepper>
           <div
             style={{
               display: "flex",

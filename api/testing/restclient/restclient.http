@@ -1,0 +1,31 @@
+POST http://localhost:3001/api/bookings/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzFiMWUwNzhmN2ExYjY2ZGJlOGFlMCIsImlhdCI6MTY0MDA4NzMyOCwiZXhwIjoxNjQyNjc5MzI4fQ.lSSURfRbrkFDre5Z_KJYAmakF4u1bVYT2YYPT9FpVFA
+
+{
+    "userEmail": "user@example.com",
+    "fromLocation": "Göteborg",
+    "departureTimeAndDate": "2021-12-22T06:53",
+    "toLocation": "Stockholm",
+    "arrivalTimeAndDate": "2021-12-22T12:53",
+    "passengerType": "Adult",
+    "ticketClass": "1:st class",
+    "price": 495,
+    "train": [
+        {
+            "advertisedTrainNumber": 188,
+            "trainCarNumber": 1,
+            "trainCarSeat": 35,
+            "trainCarSeatType": "Aisle"
+        }
+    ]
+}
+
+###
+
+GET http://localhost:3001/api/bookings/jc@example.com HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYzFiMWUwNzhmN2ExYjY2ZGJlOGFlMCIsImlhdCI6MTY0MDA4NzMyOCwiZXhwIjoxNjQyNjc5MzI4fQ.lSSURfRbrkFDre5Z_KJYAmakF4u1bVYT2YYPT9FpVFA
+
+
+###

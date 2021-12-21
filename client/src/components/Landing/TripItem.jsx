@@ -34,7 +34,7 @@ export const TripItem = ({ trip }) => {
                 </Typography>
                 <Typography paddingRight={2}>
                     Framme: {formatDate(trip.arrivalTimeAndDate)}
-                    {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
+                    {` - ${trip.arrivalTimeAndDate.substr(11, 5)}`}
                 </Typography>
                 <Button
                     onClick={() => history.push(`/tripinfo/${trip._id}`)}

@@ -36,7 +36,7 @@ const containerStyle = {
   flexDirection: "column",
   justifyContent: "space-evenly",
   alignItems: "center",
-  minHeight: "40vh",
+  minHeight: "60vh",
   width: "50%",
   background: "white",
   padding: 20,
@@ -154,8 +154,10 @@ export const TripInfo = () => {
             </div>
             <div>
               <FormControl sx={{ m: 5, minWidth: 200 }}>
-                <InputLabel>Biljettyp</InputLabel>
+                <InputLabel id="demo-simple-select-label">Biljettyp</InputLabel>
                 <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
                   value={ticketType}
                   label="Biljettyp"
                   onChange={(e) => handleChange(e)}

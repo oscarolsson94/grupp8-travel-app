@@ -56,16 +56,17 @@ export const TripInfo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      return await axios.get(`localhost:3001/api/plantrip/single/${id}`, {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
+      const response = await axios.get(
+        `http://localhost:3001/api/planTrip/${id}`,
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
+
+      setTrip(response.data);
     };
 
-    const response = fetchData();
-
-    console.log(response.data);
-
-    setTrip(response.data);
+    fetchData();
   }, []);
 
   const handlePurchase = async () => {

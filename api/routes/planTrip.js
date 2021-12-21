@@ -17,7 +17,7 @@ router.get("/:fromLocation/:toLocation", async (req, res) => {
   }
 });
 
-router.get("/single/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const trip = await TripPlan.findOne({ _id: req.params.id });
     res.send(trip);

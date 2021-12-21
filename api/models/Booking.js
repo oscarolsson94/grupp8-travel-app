@@ -2,12 +2,22 @@ import mongoose from "mongoose";
 
 const BookingSchema = new mongoose.Schema(
   {
-    toLocation: { type: String, required: true, unique: true },
-    fromLocation: { type: String, required: true },
     userEmail: { type: String, required: true },
-    price: { type: String, required: true },
+    fromLocation: { type: String, required: true },
     departureTimeAndDate: { type: String, required: true },
+    toLocation: { type: String, required: true },
     arrivalTimeAndDate: { type: String, required: true },
+    passengerType: { type: String, required: true }, //ex Adult, Child etc.
+    ticketClass: { type: String }, //ex 1:st class
+    price: { type: Number, required: true },
+    train: [
+      {
+      advertisedTrainNumber: { type: Number }, //ex 188 GBG-STHLM
+      trainCarNumber: { type: Number },
+      trainCarSeat: { type: Number },
+      trainCarSeatType: { type: String } //ex window seat
+      }
+    ],
     transfers: [
       {
         location: { type: String },

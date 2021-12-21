@@ -12,7 +12,7 @@ const BookingSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     train: [
       {
-      advertisedTrainNumber: { type: String }, //ex 188 GBG-STHLM
+      advertisedTrainNumber: { type: Number }, //ex 188 GBG-STHLM
       trainCarNumber: { type: Number },
       trainCarSeat: { type: Number },
       trainCarSeatType: { type: String } //ex window seat

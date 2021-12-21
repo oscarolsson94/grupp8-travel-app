@@ -1,0 +1,58 @@
+POST http://localhost:3001/api/bookings/ HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+{
+    "userEmail": "ab@example.com",
+    "fromLocation": "Göteborg",
+    "departureTimeAndDate": "2021-12-22T06:53",
+    "toLocation": "Stockholm",
+    "arrivalTimeAndDate": "2021-12-22T12:53",
+    "passengerType": "Adult",
+    "ticketClass": "1:st class",
+    "price": 495,
+    "train": [
+        {
+            "advertisedTrainNumber": 188,
+            "trainCarNumber": 1,
+            "trainCarSeat": 35,
+            "trainCarSeatType": "Aisle"
+        }
+    ]
+}
+
+### Test fetching a booking by userEmail with a token not valid for the specified booking id (e.g. booking belongs to another user). Expected: 403
+
+GET http://localhost:3001/api/bookings/dejv@sprintvall.se HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### Test that we can fetch a booking by userEmail.
+
+GET http://localhost:3001/api/bookings/ab@example.com HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### Test that we can fetch a booking by id.
+
+GET http://localhost:3001/api/bookings/single/61c1f22cc13c2bb82c25983b HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### Test fetching a booking by id with a token not valid for the specified booking id (e.g. booking belongs to another user). Expected: 403
+
+GET http://localhost:3001/api/bookings/single/61c18ec96cb1a4a748f2682c HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### Test that we can delete a booking by id.
+
+DELETE http://localhost:3001/api/bookings/61c1f22cc13c2bb82c25983b HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### Test deleting a booking by id with a token not valid for the specified booking id (e.g. booking belongs to another user). Expected: 403
+
+DELETE http://localhost:3001/api/bookings/61c18ec96cb1a4a748f2682c HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN

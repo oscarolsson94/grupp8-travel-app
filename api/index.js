@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import bookingsRoutes from "./routes/bookings.js";
 import tripRoutes from "./routes/planTrip.js";
+import ticketClassRoutes from "./routes/ticketClass.js";
+
 import cors from "cors";
 
 dotenv.config();
@@ -27,6 +29,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingsRoutes);
 
 app.use("/api/planTrip", tripRoutes);
+
+app.use("/api/ticketClass", ticketClassRoutes)
 
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);

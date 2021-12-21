@@ -13,7 +13,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
 const PRICES = {
@@ -56,7 +56,7 @@ export const TripInfo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      return await axios.get(`localhost:3001/api/bookings/single/${id}`, {
+      return await axios.get(`localhost:3001/api/plantrip/single/${id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
     };
@@ -92,6 +92,7 @@ export const TripInfo = () => {
     }
   };
 
+  if (!user.token) return <Redirect to="/" />;
   return (
     <>
       <div style={heroDivStyle}>

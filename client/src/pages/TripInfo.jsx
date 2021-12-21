@@ -10,10 +10,11 @@ import {
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { formatDate } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const PRICES = {
   YOUTH: 199,
@@ -50,13 +51,22 @@ export const TripInfo = () => {
   const [multiplier, setMultiplier] = useState(1);
 
   const history = useHistory();
+  const { id } = useParams();
+  const { user } = useContext(UserContext);
 
-  /*   useEffect(async () => {
-    const response = await axios.get(
-      `http://localhost:3001/api/planTrip/${id}`
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      return await axios.get(`localhost:3001/api/bookings/single/${id}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+    };
+
+    const response = fetchData();
+
+    console.log(response.data);
+
     setTrip(response.data);
-  }, []); */
+  }, []);
 
   const handlePurchase = async () => {
     /*     const response = await axios.post(

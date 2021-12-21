@@ -92,7 +92,7 @@ export const Landing = () => {
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DesktopDatePicker
-              label="Date desktop"
+              label="Datum"
               inputFormat="MM/dd/yyyy"
               value={date}
               onChange={(date) => setDate(date)}
@@ -100,7 +100,7 @@ export const Landing = () => {
             />
             <TimePicker
               ampm={false}
-              label="Time"
+              label="Tid"
               value={time}
               onChange={(time) => setTime(time)}
               renderInput={(params) => <TextField {...params} />}

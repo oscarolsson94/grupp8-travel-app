@@ -10,44 +10,44 @@ import { MyPages } from "./pages/MyPages";
 import { Navbar } from "./components/Navbar";
 
 const appStyles = {
-    backgroundColor: "#65AFFF",
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+  backgroundColor: "#65AFFF",
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 function App() {
-    const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem("user")) || {
-            firstName: "",
-            lastName: "",
-            email: "",
-            token: "",
-        }
-    );
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || {
+      firstName: "",
+      lastName: "",
+      email: "",
+      token: "",
+    }
+  );
 
-    useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(user));
-    }, [user]);
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
-    return (
-        <div style={appStyles}>
-            <UserContext.Provider value={{ user, setUser }}>
-                <Router>
-                    {user.token && <Navbar />}
-                    <Switch>
-                        <Route path="/" exact component={Landing} />
-                        <Route path="/login" exact component={Login} />
-                        <Route path="/register" exact component={Register} />
-                        <Route path="/tripinfo" component={TripInfo} />
-                        <Route path="/mypages" exact component={MyPages} />
-                    </Switch>
-                </Router>
-            </UserContext.Provider>
-        </div>
-    );
+  return (
+    <div style={appStyles}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Router>
+          {user.token && <Navbar />}
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
+            <Route path="/tripinfo/:id" component={TripInfo} />
+            <Route path="/mypages" exact component={MyPages} />
+          </Switch>
+        </Router>
+      </UserContext.Provider>
+    </div>
+  );
 }
 
 export default App;

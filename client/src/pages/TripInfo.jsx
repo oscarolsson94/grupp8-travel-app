@@ -45,9 +45,9 @@ const containerStyle = {
 
 export const TripInfo = () => {
   const [trip, setTrip] = useState();
-  const [ticketType, setTicketType] = useState("Vuxen");
+  const [ticketType, setTicketType] = useState("");
   const [price, setPrice] = useState(0);
-  const [ticketClass, setTicketClass] = useState("2:a klass");
+  const [ticketClass, setTicketClass] = useState("");
   const [multiplier, setMultiplier] = useState(1);
 
   const history = useHistory();
@@ -153,11 +153,15 @@ export const TripInfo = () => {
               ))}
             </div>
             <div>
-              <FormControl sx={{ m: 5, minWidth: 200 }}>
-                <InputLabel id="demo-simple-select-label">Biljettyp</InputLabel>
+              <FormControl
+                sx={{
+                  m: 5,
+                  minWidth: 200,
+                }}
+              >
+                <InputLabel>Biljettyp</InputLabel>
                 <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
+                  MenuProps={{ disableScrollLock: true, variant: "menu" }}
                   value={ticketType}
                   label="Biljettyp"
                   onChange={(e) => handleChange(e)}
@@ -170,6 +174,7 @@ export const TripInfo = () => {
               <FormControl sx={{ m: 5, minWidth: 200 }}>
                 <InputLabel>Klass</InputLabel>
                 <Select
+                  MenuProps={{ disableScrollLock: true, variant: "menu" }}
                   value={ticketClass}
                   label="Klass"
                   onChange={(e) => {
@@ -187,9 +192,7 @@ export const TripInfo = () => {
               </FormControl>
             </div>
             <div>
-              <Typography variant="h5" paddingRight={2}>
-                Pris: {price * multiplier}:-
-              </Typography>
+              <Typography variant="h5">Pris: {price * multiplier}:-</Typography>
             </div>
             <Button
               endIcon={<CreditScoreIcon />}

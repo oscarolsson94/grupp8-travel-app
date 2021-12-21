@@ -69,10 +69,7 @@ export const TripInfo = () => {
   }, []);
 
   const handlePurchase = async () => {
-    /*     const response = await axios.post(
-      `http://localhost:3001/api/bookings/
-    ); */
-    history.push("/mypages");
+    history.push("/payment");
   };
 
   const handleChange = (e) => {

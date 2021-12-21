@@ -25,7 +25,7 @@ router.get("/:email", verify, async (req, res) => {
 });
 
 //CREATE
-router.post("/", verify, async (req, res) => {
+router.post("/", /*verify,*/ async (req, res) => {
   const newBooking = new Booking(req.body);
   try {
     const savedBooking = await newBooking.save();

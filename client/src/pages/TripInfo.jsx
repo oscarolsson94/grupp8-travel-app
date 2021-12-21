@@ -97,77 +97,109 @@ export const TripInfo = () => {
         <Typography variant="h2" color="white">
           Reseinformation
         </Typography>
-        <div style={containerStyle}>
-          <Stepper sx={{ width: "100%" }} activeStep={1} alternativeLabel>
-            <Step>
-              <StepLabel>Sök resa</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>Anpassa din resa</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>Betalning</StepLabel>
-            </Step>
-          </Stepper>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-evenly",
-              alignItems: "center",
-            }}
-          >
-            <Typography paddingRight={2}>Från: Göteborg</Typography>
-            <Typography paddingRight={2}>Till: Stockholm</Typography>
-            <Typography paddingRight={2}>Avgår: 21/10 - 15:20</Typography>
-            <Typography paddingRight={2}>Framme: 21/10 - 15:20</Typography>
+        {trip && (
+          <div style={containerStyle}>
+            <Stepper sx={{ width: "100%" }} activeStep={1} alternativeLabel>
+              <Step>
+                <StepLabel>Sök resa</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Anpassa din resa</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Betalning</StepLabel>
+              </Step>
+            </Stepper>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              <Typography paddingRight={2}>
+                Från: {trip.fromLocation}
+              </Typography>
+              <Typography paddingRight={2}>Till: {trip.toLocation}</Typography>
+              <Typography paddingRight={2}>
+                Avgår: {formatDate(trip.departureTimeAndDate)}
+              </Typography>
+              <Typography paddingRight={2}>
+                Framme: {formatDate(trip.arrivalTimeAndDate)}
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="h5" paddingRight={2}>
+                Byten:
+              </Typography>
+              {trip.stops.map((stop, i) => (
+                <div key={i}>
+                  <Typography paddingRight={2}>
+                    Station: {stop.location}
+                  </Typography>
+                  <Typography paddingRight={2}>
+                    Anländer: {stop.arrivalTime.substr(11, 5)}
+                  </Typography>
+                  <Typography paddingRight={2}>
+                    Avgår: {stop.departureTime.substr(11, 5)}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+            <div>
+              <FormControl sx={{ m: 5, minWidth: 200 }}>
+                <InputLabel>Biljettyp</InputLabel>
+                <Select
+                  value={ticketType}
+                  label="Biljettyp"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <MenuItem value={"Ungdom"}>Ungdom - 199:-</MenuItem>
+                  <MenuItem value={"Pensionär"}>Pensionär - 249:-</MenuItem>
+                  <MenuItem value={"Vuxen"}>Vuxen - 399:-</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl sx={{ m: 5, minWidth: 200 }}>
+                <InputLabel>Klass</InputLabel>
+                <Select
+                  value={ticketClass}
+                  label="Klass"
+                  onChange={(e) => {
+                    setTicketClass(e.target.value);
+                    if (e.target.value === "1:a klass") {
+                      setMultiplier(1.5);
+                    } else {
+                      setMultiplier(1);
+                    }
+                  }}
+                >
+                  <MenuItem value={"1:a klass"}>1:a klass</MenuItem>
+                  <MenuItem value={"2:a klass"}>2:a klass</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div>
+              <Typography variant="h5" paddingRight={2}>
+                Pris: {price * multiplier}:-
+              </Typography>
+            </div>
+            <Button
+              endIcon={<CreditScoreIcon />}
+              variant="contained"
+              onClick={handlePurchase}
+              style={{ background: "#FFA5A5" }}
+              size="large"
+            >
+              Gå till betalning
+            </Button>
           </div>
-          <div>
-            <FormControl sx={{ m: 5, minWidth: 200 }}>
-              <InputLabel>Biljettyp</InputLabel>
-              <Select
-                value={ticketType}
-                label="Biljettyp"
-                onChange={(e) => handleChange(e)}
-              >
-                <MenuItem value={"Ungdom"}>Ungdom - 199:-</MenuItem>
-                <MenuItem value={"Pensionär"}>Pensionär - 249:-</MenuItem>
-                <MenuItem value={"Vuxen"}>Vuxen - 399:-</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: 5, minWidth: 200 }}>
-              <InputLabel>Klass</InputLabel>
-              <Select
-                value={ticketClass}
-                label="Klass"
-                onChange={(e) => {
-                  setTicketClass(e.target.value);
-                  if (e.target.value === "1:a klass") {
-                    setMultiplier(1.5);
-                  } else {
-                    setMultiplier(1);
-                  }
-                }}
-              >
-                <MenuItem value={"1:a klass"}>1:a klass</MenuItem>
-                <MenuItem value={"2:a klass"}>2:a klass</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div>
-            <Typography variant="h5" paddingRight={2}>
-              Pris: {price * multiplier}:-
-            </Typography>
-          </div>
-          <Button
-            endIcon={<CreditScoreIcon />}
-            variant="contained"
-            onClick={handlePurchase}
-            style={{ background: "#FFA5A5" }}
-            size="large"
-          >
-            Gå till betalning
-          </Button>
-        </div>
+        )}
       </div>
     </>
   );

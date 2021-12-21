@@ -70,7 +70,23 @@ export const TripInfo = () => {
   }, []);
 
   const handlePurchase = async () => {
-    history.push("/payment");
+    await axios.post(
+      `http://localhost:3001/api/bookings/`,
+      {
+        userEmail: user.email,
+        fromLocation: trip.fromLocation,
+        toLocation: trip.toLocation,
+        departureTimeAndDate: trip.departureTimeAndDate,
+        arrivalTimeAndDate: trip.arrivalTimeAndDate,
+        passengerType: ticketType,
+        ticketClass: ticketClass,
+        price: price * multiplier,
+      },
+      {
+        headers: { Authorization: `Bearer ${user.token}` },
+      }
+    );
+    /* history.push("/payment"); */
   };
 
   const handleChange = (e) => {

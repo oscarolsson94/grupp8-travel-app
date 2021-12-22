@@ -7,6 +7,7 @@ import { Register } from "./pages/Register";
 import { Landing } from "./pages/Landing";
 import { TripInfo } from "./pages/TripInfo";
 import { MyPages } from "./pages/MyPages";
+import { BookingInfo } from "./pages/BookingInfo";
 import { Navbar } from "./components/Navbar";
 
 const appStyles = {
@@ -43,6 +44,7 @@ function App() {
                         <Route path="/register" exact component={Register} />
                         <Route path="/tripinfo" component={TripInfo} />
                         <Route path="/mypages" exact component={MyPages} />
+                        <Route path="/bookinginfo" exact component={BookingInfo} />
                     </Switch>
                 </Router>
             </UserContext.Provider>

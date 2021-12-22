@@ -9,6 +9,7 @@ import { TripInfo } from "./pages/TripInfo";
 import { MyPages } from "./pages/MyPages";
 import { BookingInfo } from "./pages/BookingInfo";
 import { Navbar } from "./components/Navbar";
+import { Payment } from "./pages/Payment";
 
 const appStyles = {
     backgroundColor: "#65AFFF",
@@ -42,9 +43,10 @@ function App() {
                         <Route path="/" exact component={Landing} />
                         <Route path="/login" exact component={Login} />
                         <Route path="/register" exact component={Register} />
-                        <Route path="/tripinfo" component={TripInfo} />
+                        <Route path="/tripinfo/:id" component={TripInfo} />
                         <Route path="/mypages" exact component={MyPages} />
-                        <Route path="/bookinginfo" exact component={BookingInfo} />
+                        <Route path="/payment" exact component={Payment} />
+                        <Route path="/bookinginfo:id" exact component={BookingInfo} />
                     </Switch>
                 </Router>
             </UserContext.Provider>

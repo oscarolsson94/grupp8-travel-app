@@ -21,13 +21,14 @@ mongoose
   });
 
 app.use(express.json());
+
 app.use(cors());
 
 app.use("/api/auth", authRoutes);
 
 app.use("/api/bookings", bookingsRoutes);
 
-app.use("/api/planTrip", tripRoutes)
+app.use("/api/planTrip", tripRoutes);
 
 app.use("/api/ticketClass", ticketClassRoutes)
 

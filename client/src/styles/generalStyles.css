@@ -36,7 +36,7 @@
 
 .tripItemStyle {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #274060;
   border: 1px solid grey;

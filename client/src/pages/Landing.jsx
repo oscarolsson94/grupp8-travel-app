@@ -105,20 +105,20 @@ export const Landing = () => {
             Sök Resa
           </Button>
         </div>
+      </div>
+      {trips.length > 0 && (
         <div
+          className="containerStyle"
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
             marginTop: 20,
+            boxSizing: "border-box",
           }}
         >
           {trips.map((trip, i) => (
             <TripItem key={i} trip={trip} />
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };

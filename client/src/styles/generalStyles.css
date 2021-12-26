@@ -1,11 +1,11 @@
 .heroDivStyle {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background-size: cover;
   width: 100%;
+  margin-top: 50px;
 }
 
 .containerStyle {
@@ -16,8 +16,14 @@
   background: white;
   padding: 30px;
   border-radius: 20px;
-  max-height: 60vh;
+  max-height: 45vh;
   overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.containerStyle::-webkit-scrollbar {
+  display: none;
 }
 
 .tripItemStyle {

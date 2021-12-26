@@ -4,48 +4,58 @@ import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
+import "../../styles/generalStyles.css";
+import { Divider } from "@mui/material";
 
 export const TripItem = ({ trip }) => {
-    const history = useHistory();
-    return (
-        <>
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    background: "#274060",
-                    border: "1px solid grey",
-                    borderRadius: 10,
-                    padding: 2,
-                    marginBottom: 2,
-                    color: "white",
-                }}
-            >
-                <Typography paddingRight={2}>
-                    Från: {trip.fromLocation}
-                </Typography>
-                <Typography paddingRight={2}>
-                    Till: {trip.toLocation}
-                </Typography>
-                <Typography paddingRight={2}>
-                    Avgår: {formatDate(trip.departureTimeAndDate)}
-                    {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
-                </Typography>
-                <Typography paddingRight={2}>
-                    Framme: {formatDate(trip.arrivalTimeAndDate)}
-                    {` - ${trip.arrivalTimeAndDate.substr(11, 5)}`}
-                </Typography>
-                <Button
-                    onClick={() => history.push(`/tripinfo/${trip._id}`)}
-                    disableElevation
-                    style={{ background: "#274060" }}
-                    endIcon={<SendIcon />}
-                    variant="contained"
-                >
-                    Gå till resa
-                </Button>
-            </div>
-        </>
-    );
+  const history = useHistory();
+  return (
+    <>
+      <div className="tripItemStyle">
+        <Typography paddingRight={1} paddingLeft={1}>
+          Från: {trip.fromLocation}
+        </Typography>
+        <Divider
+          style={{ background: "white" }}
+          orientation="vertical"
+          flexItem
+        />
+        <Typography paddingRight={1} paddingLeft={1}>
+          Till: {trip.toLocation}
+        </Typography>
+        <Divider
+          style={{ background: "white" }}
+          orientation="vertical"
+          flexItem
+        />
+        <Typography paddingRight={1} paddingLeft={1}>
+          Avgår: {formatDate(trip.departureTimeAndDate)}
+          {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
+        </Typography>
+        <Divider
+          style={{ background: "white" }}
+          orientation="vertical"
+          flexItem
+        />
+        <Typography paddingRight={1} paddingLeft={1}>
+          Framme: {formatDate(trip.arrivalTimeAndDate)}
+          {` - ${trip.arrivalTimeAndDate.substr(11, 5)}`}
+        </Typography>
+        <Divider
+          style={{ background: "white" }}
+          orientation="vertical"
+          flexItem
+        />
+        <Button
+          onClick={() => history.push(`/tripinfo/${trip._id}`)}
+          disableElevation
+          style={{ background: "#274060" }}
+          endIcon={<SendIcon />}
+          variant="contained"
+        >
+          Gå till resa
+        </Button>
+      </div>
+    </>
+  );
 };

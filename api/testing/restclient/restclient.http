@@ -5,9 +5,9 @@ Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 {
     "userEmail": "ab@example.com",
     "fromLocation": "Göteborg",
-    "departureTimeAndDate": "2021-12-22T06:53",
+    "departureTimeAndDate": "2021-12-23T06:53",
     "toLocation": "Stockholm",
-    "arrivalTimeAndDate": "2021-12-22T12:53",
+    "arrivalTimeAndDate": "2021-12-23T12:53",
     "passengerType": "Adult",
     "ticketClass": "1:st class",
     "price": 495,

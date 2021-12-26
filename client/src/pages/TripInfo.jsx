@@ -115,16 +115,24 @@ export const TripInfo = () => {
               Resa
             </Divider>
             <div className="flexSpaceEven">
-              <Typography gutterBottom variant="h6" paddingRight={2}>
+              <Typography
+                gutterBottom
+                variant="h6"
+                paddingRight={1}
+                paddingLeft={1}
+              >
                 Från: {trip.fromLocation}
               </Typography>
-              <Typography variant="h6" paddingRight={2}>
+              <Divider orientation="vertical" flexItem></Divider>
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Till: {trip.toLocation}
               </Typography>
-              <Typography variant="h6" paddingRight={2}>
+              <Divider orientation="vertical" flexItem></Divider>
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Avgår: {formatDate(trip.departureTimeAndDate)}
               </Typography>
-              <Typography variant="h6" paddingRight={2}>
+              <Divider orientation="vertical" flexItem></Divider>
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Framme: {formatDate(trip.arrivalTimeAndDate)}
               </Typography>
             </div>

@@ -48,11 +48,6 @@ export const Landing = () => {
       <Typography variant="h2" color="white">
         Sök resa
       </Typography>
-      {loading && (
-        <Grid align="center">
-          <CircularProgress color="primary" />
-        </Grid>
-      )}
       <div className="containerStyle">
         <div
           style={{
@@ -118,6 +113,11 @@ export const Landing = () => {
             Sök Resa
           </Button>
         </div>
+        {loading && (
+          <Grid align="center">
+            <CircularProgress color="primary" />
+          </Grid>
+        )}
       </div>
       {trips.length > 0 && (
         <div

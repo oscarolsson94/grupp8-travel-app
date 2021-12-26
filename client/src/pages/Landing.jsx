@@ -13,27 +13,6 @@ import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import "../styles/generalStyles.css";
 
-const heroDivStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  width: "100%",
-};
-
-const containerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "40vh",
-  width: "50%",
-  background: "white",
-  padding: 20,
-  borderRadius: 20,
-};
-
 export const Landing = () => {
   const { user } = useContext(UserContext);
   const [trips, setTrips] = useState([]);
@@ -132,6 +111,7 @@ export const Landing = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            marginTop: 20,
           }}
         >
           {trips.map((trip, i) => (

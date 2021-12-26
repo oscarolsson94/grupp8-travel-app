@@ -10,19 +10,7 @@ export const TripItem = ({ trip }) => {
   const history = useHistory();
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "#274060",
-          border: "1px solid grey",
-          borderRadius: 10,
-          padding: 2,
-          marginBottom: 2,
-          color: "white",
-        }}
-      >
+      <div className="tripItemStyle">
         <Typography paddingRight={2}>Från: {trip.fromLocation}</Typography>
         <Typography paddingRight={2}>Till: {trip.toLocation}</Typography>
         <Typography paddingRight={2}>

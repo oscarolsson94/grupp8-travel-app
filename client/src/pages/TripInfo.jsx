@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -15,32 +16,12 @@ import { formatDate } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import "../styles/generalStyles.css";
 
 const PRICES = {
   YOUTH: 199,
   ADULT: 399,
   SENIOR: 249,
-};
-
-const heroDivStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100vh",
-  width: "100%",
-};
-
-const containerStyle = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-evenly",
-  alignItems: "center",
-  minHeight: "60vh",
-  width: "50%",
-  background: "white",
-  padding: 20,
-  borderRadius: 20,
 };
 
 export const TripInfo = () => {
@@ -56,18 +37,18 @@ export const TripInfo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
+      const { data } = await axios.get(
         `http://localhost:3001/api/planTrip/${id}`,
         {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
 
-      setTrip(response.data);
+      setTrip(data);
     };
 
     fetchData();
-  }, []);
+  }, [id, user.token]);
 
   const handlePurchase = async () => {
     await axios.post(
@@ -86,7 +67,7 @@ export const TripInfo = () => {
         headers: { Authorization: `Bearer ${user.token}` },
       }
     );
-    /* history.push("/payment"); */
+    history.push("/payment");
   };
 
   const handleChange = (e) => {
@@ -109,13 +90,17 @@ export const TripInfo = () => {
   if (!user.token) return <Redirect to="/" />;
   return (
     <>
-      <div style={heroDivStyle}>
+      <div className="heroDivStyle">
         <Typography variant="h2" color="white">
           Reseinformation
         </Typography>
         {trip && (
-          <div style={containerStyle}>
-            <Stepper sx={{ width: "100%" }} activeStep={1} alternativeLabel>
+          <div className="containerStyle">
+            <Stepper
+              sx={{ width: "100%", marginBottom: "20px" }}
+              activeStep={1}
+              alternativeLabel
+            >
               <Step>
                 <StepLabel>Sök resa</StepLabel>
               </Step>
@@ -126,36 +111,39 @@ export const TripInfo = () => {
                 <StepLabel>Betalning</StepLabel>
               </Step>
             </Stepper>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Typography paddingRight={2}>
+            <Divider flexItem textAlign="left">
+              Resa
+            </Divider>
+            <div className="flexSpaceEven">
+              <Typography
+                gutterBottom
+                variant="h6"
+                paddingRight={1}
+                paddingLeft={1}
+              >
                 Från: {trip.fromLocation}
               </Typography>
-              <Typography paddingRight={2}>Till: {trip.toLocation}</Typography>
-              <Typography paddingRight={2}>
+              <Divider orientation="vertical" flexItem />
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
+                Till: {trip.toLocation}
+              </Typography>
+              <Divider orientation="vertical" flexItem />
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Avgår: {formatDate(trip.departureTimeAndDate)}
               </Typography>
-              <Typography paddingRight={2}>
+              <Divider orientation="vertical" flexItem />
+              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Framme: {formatDate(trip.arrivalTimeAndDate)}
               </Typography>
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h5" paddingRight={2}>
-                Byten:
-              </Typography>
+            <Divider flexItem textAlign="left">
+              Byten
+            </Divider>
+            <div className="flexSpaceEven">
               {trip.stops.map((stop, i) => (
                 <div key={i}>
+                  <Typography paddingRight={2}>Byte {i + 1}</Typography>
+                  <Divider flexItem />
                   <Typography paddingRight={2}>
                     Station: {stop.location}
                   </Typography>

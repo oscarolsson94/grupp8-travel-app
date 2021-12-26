@@ -11,6 +11,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import "../styles/generalStyles.css";
 
 const heroDivStyle = {
   display: "flex",
@@ -56,11 +57,11 @@ export const Landing = () => {
   if (!user.token) return <Redirect to="/login" />;
 
   return (
-    <div style={heroDivStyle}>
+    <div className="heroDivStyle">
       <Typography variant="h2" color="white">
         Sök resa
       </Typography>
-      <div style={containerStyle}>
+      <div className="containerStyle">
         <div
           style={{
             display: "flex",

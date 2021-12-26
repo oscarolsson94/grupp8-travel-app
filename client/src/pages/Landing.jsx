@@ -111,7 +111,8 @@ export const Landing = () => {
           className="containerStyle"
           style={{
             marginTop: 20,
-            boxSizing: "border-box",
+            justifyContent: "flex-start",
+            paddingTop: 10,
           }}
         >
           {trips.map((trip, i) => (

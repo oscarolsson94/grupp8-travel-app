@@ -12,6 +12,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import "../styles/generalStyles.css";
+import { CircularProgress, Grid } from "@mui/material";
 
 export const Landing = () => {
   const { user } = useContext(UserContext);
@@ -20,12 +21,19 @@ export const Landing = () => {
   const [toLocation, setToLocation] = useState("");
   const [date, setDate] = useState(new Date("2021-12-18T21:11:54"));
   const [time, setTime] = useState(new Date("2021-12-18T21:11:54"));
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
+    setLoading(true);
     const response = await axios.get(
       `http://localhost:3001/api/planTrip/${fromLocation}/${toLocation}`
     );
-    setTrips(response.data);
+    const tripsSortedByDate = response.data.sort(
+      (a, b) =>
+        new Date(a.departureTimeAndDate) - new Date(b.departureTimeAndDate)
+    );
+    setTrips(tripsSortedByDate);
+    setLoading(false);
   };
 
   const paddingRight = {
@@ -40,6 +48,11 @@ export const Landing = () => {
       <Typography variant="h2" color="white">
         Sök resa
       </Typography>
+      {loading && (
+        <Grid align="center">
+          <CircularProgress color="primary" />
+        </Grid>
+      )}
       <div className="containerStyle">
         <div
           style={{

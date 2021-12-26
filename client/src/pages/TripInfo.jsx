@@ -123,15 +123,15 @@ export const TripInfo = () => {
               >
                 Från: {trip.fromLocation}
               </Typography>
-              <Divider orientation="vertical" flexItem></Divider>
+              <Divider orientation="vertical" flexItem />
               <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Till: {trip.toLocation}
               </Typography>
-              <Divider orientation="vertical" flexItem></Divider>
+              <Divider orientation="vertical" flexItem />
               <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Avgår: {formatDate(trip.departureTimeAndDate)}
               </Typography>
-              <Divider orientation="vertical" flexItem></Divider>
+              <Divider orientation="vertical" flexItem />
               <Typography variant="h6" paddingRight={1} paddingLeft={1}>
                 Framme: {formatDate(trip.arrivalTimeAndDate)}
               </Typography>

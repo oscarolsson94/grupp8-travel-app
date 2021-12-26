@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -95,7 +96,11 @@ export const TripInfo = () => {
         </Typography>
         {trip && (
           <div className="containerStyle">
-            <Stepper sx={{ width: "100%" }} activeStep={1} alternativeLabel>
+            <Stepper
+              sx={{ width: "100%", marginBottom: "20px" }}
+              activeStep={1}
+              alternativeLabel
+            >
               <Step>
                 <StepLabel>Sök resa</StepLabel>
               </Step>
@@ -106,36 +111,31 @@ export const TripInfo = () => {
                 <StepLabel>Betalning</StepLabel>
               </Step>
             </Stepper>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Typography paddingRight={2}>
+            <Divider flexItem textAlign="left">
+              Resa
+            </Divider>
+            <div className="flexSpaceEven">
+              <Typography gutterBottom variant="h6" paddingRight={2}>
                 Från: {trip.fromLocation}
               </Typography>
-              <Typography paddingRight={2}>Till: {trip.toLocation}</Typography>
-              <Typography paddingRight={2}>
+              <Typography variant="h6" paddingRight={2}>
+                Till: {trip.toLocation}
+              </Typography>
+              <Typography variant="h6" paddingRight={2}>
                 Avgår: {formatDate(trip.departureTimeAndDate)}
               </Typography>
-              <Typography paddingRight={2}>
+              <Typography variant="h6" paddingRight={2}>
                 Framme: {formatDate(trip.arrivalTimeAndDate)}
               </Typography>
             </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h5" paddingRight={2}>
-                Byten:
-              </Typography>
+            <Divider flexItem textAlign="left">
+              Byten
+            </Divider>
+            <div className="flexSpaceEven">
               {trip.stops.map((stop, i) => (
                 <div key={i}>
+                  <Typography paddingRight={2}>Byte {i + 1}</Typography>
+                  <Divider flexItem />
                   <Typography paddingRight={2}>
                     Station: {stop.location}
                   </Typography>

@@ -1,5 +1,6 @@
 import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React from "react";
+import PaymentForm from "../components/Bookings/PaymentForm";
 import "../styles/generalStyles.css";
 
 export const Payment = () => {
@@ -20,6 +21,9 @@ export const Payment = () => {
             <StepLabel>Betalning</StepLabel>
           </Step>
         </Stepper>
+      </div>
+      <div className="paymentform">
+        <PaymentForm/>
       </div>
     </div>
   );

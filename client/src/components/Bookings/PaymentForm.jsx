@@ -128,7 +128,6 @@ function PaymentForm() {
                 <div className="input-container">
                 <h4>Month</h4>
                 <select value={expireMonth} onChange={handleExpMonth}>
-                      <option value="2021">2021</option>
                       <option value="2022">2022</option>
                       <option value="2023">2023</option>
                       <option value="2024">2024</option>

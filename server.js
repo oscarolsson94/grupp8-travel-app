@@ -7,13 +7,17 @@ import tripRoutes from "./routes/planTrip.js";
 import ticketClassRoutes from "./routes/ticketClass.js";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.resolve(dirname(__filename), "./client/build")));
 
 mongoose
     .connect(process.env.MONGODB_URL)

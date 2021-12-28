@@ -23,7 +23,7 @@ export const Login = () => {
     const handleLogin = () => {
         setLoading(true);
         axios
-            .post(`${process.env.BACKEND_STARTING_URL}/api/auth/login`, {
+            .post(`${process.env.BACKEND_STARTING_URL}api/auth/login`, {
                 email: email,
                 password: password,
             })

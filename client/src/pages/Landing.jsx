@@ -26,7 +26,7 @@ export const Landing = () => {
     const handleSearch = async () => {
         setLoading(true);
         const response = await axios.get(
-            `${process.env.BACKEND_STARTING_URL}/api/planTrip/${fromLocation}/${toLocation}`
+            `${process.env.BACKEND_STARTING_URL}api/planTrip/${fromLocation}/${toLocation}`
         );
         const tripsSortedByDate = response.data.sort(
             (a, b) =>

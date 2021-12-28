@@ -36,7 +36,7 @@ export const MyPages = () => {
         };
 
         const response = await axios.get(
-            `${process.env.BACKEND_STARTING_URL}/api/bookings/${user.email}`,
+            `${process.env.BACKEND_STARTING_URL}api/bookings/${user.email}`,
             config
         );
         setBookings(response.data);

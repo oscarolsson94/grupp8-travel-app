@@ -52,7 +52,7 @@ export const TripInfo = () => {
 
     const handlePurchase = async () => {
         await axios.post(
-            `${process.env.BACKEND_STARTING_URL}api/bookings/`,
+            `api/bookings/`,
             {
                 userEmail: user.email,
                 fromLocation: trip.fromLocation,

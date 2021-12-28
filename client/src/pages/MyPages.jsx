@@ -35,10 +35,7 @@ export const MyPages = () => {
             headers: { authorization: `Bearer ${user.token}` },
         };
 
-        const response = await axios.get(
-            `${process.env.BACKEND_STARTING_URL}api/bookings/${user.email}`,
-            config
-        );
+        const response = await axios.get(`api/bookings/${user.email}`, config);
         setBookings(response.data);
         console.log(response.data);
     };

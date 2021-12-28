@@ -36,7 +36,7 @@ export const Register = () => {
         setLoading(true);
         if (password === confirmPassword) {
             axios
-                .post("http://localhost:3001/api/auth/register", {
+                .post(`${process.env.BACKEND_STARTING_URL}/api/auth/register`, {
                     firstName,
                     lastName,
                     email,

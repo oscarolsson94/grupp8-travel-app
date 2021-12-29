@@ -185,9 +185,9 @@ export const TripInfo = () => {
                   label="Biljettyp"
                   onChange={(e) => handleChange(e)}
                 >
-                  <MenuItem value={"Ungdom"}>Ungdom - 199:-</MenuItem>
-                  <MenuItem value={"Pensionär"}>Pensionär - 249:-</MenuItem>
-                  <MenuItem value={"Vuxen"}>Vuxen - 399:-</MenuItem>
+                  <MenuItem value={"Ungdom"}>Ungdom</MenuItem>
+                  <MenuItem value={"Pensionär"}>Pensionär</MenuItem>
+                  <MenuItem value={"Vuxen"}>Vuxen</MenuItem>
                 </Select>
               </FormControl>
               <FormControl sx={{ m: 5, minWidth: 200 }}>

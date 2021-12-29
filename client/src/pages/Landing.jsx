@@ -49,17 +49,7 @@ export const Landing = () => {
         Sök resa
       </Typography>
       <div className="containerStyle">
-        <div
-          style={{
-            display: "flex",
-            width: "80%",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 10,
-            padding: 10,
-          }}
-        >
+        <div className="inputContainer">
           <TextField
             style={paddingRight}
             label="Från"
@@ -73,17 +63,7 @@ export const Landing = () => {
             onChange={(e) => setToLocation(e.target.value)}
           ></TextField>
         </div>
-        <div
-          style={{
-            display: "flex",
-            width: "80%",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 10,
-            padding: 10,
-          }}
-        >
+        <div className="inputContainer">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DesktopDatePicker
               label="Datum"
@@ -106,7 +86,7 @@ export const Landing = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginBottom: 10,
+            marginTop: 10,
           }}
         >
           <Button

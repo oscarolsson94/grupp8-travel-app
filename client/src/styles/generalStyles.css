@@ -26,10 +26,19 @@
 .flexSpaceEven {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
   padding: 5px;
+}
+
+.inputContainer {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10;
+  padding: 10;
 }
 
 .containerStyle::-webkit-scrollbar {

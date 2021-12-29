@@ -5,20 +5,19 @@ import authRoutes from "./routes/auth.js";
 import bookingsRoutes from "./routes/bookings.js";
 import tripRoutes from "./routes/planTrip.js";
 import ticketClassRoutes from "./routes/ticketClass.js";
-
 import cors from "cors";
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 mongoose
-  .connect(process.env.MONGODB_URL)
-  .then(() => console.log("DB Connection Successful"))
-  .catch((err) => {
-    console.error(err);
-  });
+    .connect(process.env.MONGODB_URL)
+    .then(() => console.log("DB Connection Successful"))
+    .catch((err) => {
+        console.error(err);
+    });
 
 app.use(express.json());
 
@@ -30,8 +29,8 @@ app.use("/api/bookings", bookingsRoutes);
 
 app.use("/api/planTrip", tripRoutes);
 
-app.use("/api/ticketClass", ticketClassRoutes)
+app.use("/api/ticketClass", ticketClassRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
+    console.log(`Backend running on port ${PORT}`);
 });

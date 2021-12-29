@@ -38,7 +38,7 @@ export const TripInfo = () => {
     useEffect(() => {
         const fetchData = async () => {
             const { data } = await axios.get(
-                `${process.env.BACKEND_STARTING_URL}api/planTrip/${id}`,
+                `${process.env.REACT_APP_BACKEND_STARTING_URL}api/planTrip/${id}`,
                 {
                     headers: { Authorization: `Bearer ${user.token}` },
                 }
@@ -52,7 +52,7 @@ export const TripInfo = () => {
 
     const handlePurchase = async () => {
         await axios.post(
-            `api/bookings/`,
+            `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings`,
             {
                 userEmail: user.email,
                 fromLocation: trip.fromLocation,

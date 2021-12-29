@@ -23,10 +23,13 @@ export const Login = () => {
     const handleLogin = () => {
         setLoading(true);
         axios
-            .post(`api/auth/login`, {
-                email: email,
-                password: password,
-            })
+            .post(
+                `${process.env.REACT_APP_BACKEND_STARTING_URL}api/auth/login`,
+                {
+                    email: email,
+                    password: password,
+                }
+            )
             .then((response) => {
                 setUser({
                     firstName: response.data.firstName,

@@ -168,7 +168,17 @@ export const TripInfo = () => {
                 ))}
               </div>
             )}
-            <div>
+            <div
+              style={{
+                display: "flex",
+                width: "80%",
+                flexWrap: "wrap",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+                marginBottom: 10,
+                padding: 10,
+              }}
+            >
               <FormControl
                 sx={{
                   m: 5,

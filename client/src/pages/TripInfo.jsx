@@ -116,25 +116,22 @@ export const TripInfo = () => {
               Resa
             </Divider>
             <div className="flexSpaceEven">
-              <Typography
-                gutterBottom
-                variant="h6"
-                paddingRight={1}
-                paddingLeft={1}
-              >
+              <Typography variant="subtitle1" padding={1}>
                 Från: {trip.fromLocation}
               </Typography>
               <Divider orientation="vertical" flexItem />
-              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
+              <Typography variant="subtitle1" padding={1}>
                 Till: {trip.toLocation}
               </Typography>
               <Divider orientation="vertical" flexItem />
-              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
-                Avgår: {formatDate(trip.departureTimeAndDate)}
+              <Typography variant="subtitle1" padding={1}>
+                Avgår: {formatDate(trip.departureTimeAndDate)} -
+                {trip.departureTimeAndDate.substr(11, 5)}
               </Typography>
               <Divider orientation="vertical" flexItem />
-              <Typography variant="h6" paddingRight={1} paddingLeft={1}>
-                Framme: {formatDate(trip.arrivalTimeAndDate)}
+              <Typography variant="subtitle1" padding={1}>
+                Framme: {formatDate(trip.arrivalTimeAndDate)} -
+                {trip.arrivalTimeAndDate.substr(11, 5)}
               </Typography>
             </div>
             <Divider
@@ -156,7 +153,7 @@ export const TripInfo = () => {
               <div className="flexSpaceEven">
                 {trip.stops.map((stop, i) => (
                   <div key={i}>
-                    <Typography paddingRight={2}>Byte {i + 1}</Typography>
+                    <Typography paddingRight={2}>Station {i + 1}</Typography>
                     <Divider flexItem />
                     <Typography paddingRight={2}>
                       Station: {stop.location}

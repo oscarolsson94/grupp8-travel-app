@@ -36,12 +36,15 @@ export const Register = () => {
         setLoading(true);
         if (password === confirmPassword) {
             axios
-                .post("http://localhost:3001/api/auth/register", {
-                    firstName,
-                    lastName,
-                    email,
-                    password,
-                })
+                .post(
+                    `${process.env.REACT_APP_BACKEND_STARTING_URL}api/auth/register`,
+                    {
+                        firstName,
+                        lastName,
+                        email,
+                        password,
+                    }
+                )
                 .then(() => {
                     console.log("account created");
                     setLoading(false);

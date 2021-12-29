@@ -32,12 +32,12 @@ export const MyPages = () => {
 
     const getBookings = async () => {
         const config = {
-            headers: { authorization: `Bearer ${user.token}` }
+            headers: { authorization: `Bearer ${user.token}` },
         };
 
         const response = await axios.get(
-            `http://localhost:3001/api/bookings/${user.email}`
-            , config
+            `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/${user.email}`,
+            config
         );
         setBookings(response.data);
         console.log(response.data);

@@ -142,9 +142,15 @@ export const TripInfo = () => {
               flexItem
               textAlign="left"
             >
-              {!showStops
-                ? `Visa (${trip.stops.length}) mellanliggande hållplatser`
-                : "Dölj mellanliggande hållplatser"}
+              {!showStops ? (
+                <Typography className="mouseover">
+                  {`Visa (${trip.stops.length}) mellanliggande hållplatser`}
+                </Typography>
+              ) : (
+                <Typography className="mouseover">
+                  Dölj mellanliggande hållplatser
+                </Typography>
+              )}
             </Divider>
             {showStops && (
               <div className="flexSpaceEven">

@@ -48,6 +48,10 @@
   width: 100%;
 }
 
+.mouseover:hover {
+  cursor: pointer;
+}
+
 .paymentform {
   margin-top: 120px;
 }

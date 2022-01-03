@@ -68,7 +68,7 @@ export const TripInfo = () => {
         headers: { Authorization: `Bearer ${user.token}` },
       }
     );
-    history.push("/payment");
+    history.push("/OrderConfirmation");
   };
 
   const handleChange = (e) => {
@@ -109,7 +109,7 @@ export const TripInfo = () => {
                 <StepLabel>Anpassa din resa</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Betalning</StepLabel>
+                <StepLabel>Orderbekräftelse</StepLabel>
               </Step>
             </Stepper>
             <Divider flexItem textAlign="left">

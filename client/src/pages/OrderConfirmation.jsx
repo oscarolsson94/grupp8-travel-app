@@ -2,11 +2,11 @@ import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React from "react";
 import "../styles/generalStyles.css";
 
-export const Payment = () => {
+export const OrderConfirmation = () => {
   return (
     <div className="heroDivStyle">
       <Typography variant="h2" color="white">
-        Betalning
+        Orderbekräftelse
       </Typography>
       <div className="containerStyle">
         <Stepper sx={{ width: "100%" }} activeStep={2} alternativeLabel>
@@ -17,7 +17,7 @@ export const Payment = () => {
             <StepLabel>Anpassa din resa</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Betalning</StepLabel>
+            <StepLabel>Orderbekräftelse</StepLabel>
           </Step>
         </Stepper>
       </div>

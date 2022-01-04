@@ -29,3 +29,19 @@ export const formatDate = (dateStr) => {
 
     return "";
 };
+
+export const formatTime = (dateStr) => {
+    const isDateAStr = !isNaN(Date.parse(dateStr));
+
+    if (isDateAStr) {
+        const date = new Date(dateStr);
+
+       
+        const hoursTime = date.getHours()
+        const minTime = date.getMinutes()
+
+        return `${hoursTime}:${minTime}`;
+    }
+
+    return "";
+};

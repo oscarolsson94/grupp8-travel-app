@@ -37,7 +37,7 @@ function App() {
     return (
         <div style={appStyles}>
             <UserContext.Provider value={{ user, setUser }}>
-                <Router>
+                <Router forceRefresh>
                     {user.token && <Navbar />}
                     <Switch>
                         <Route path="/" exact component={Landing} />
@@ -46,7 +46,7 @@ function App() {
                         <Route path="/tripinfo/:id" component={TripInfo} />
                         <Route path="/mypages" exact component={MyPages} />
                         <Route path="/payment" exact component={Payment} />
-                        <Route path="/bookinginfo:id" exact component={BookingInfo} />
+                        <Route path="/bookinginfo/:id" component={BookingInfo} />
                     </Switch>
                 </Router>
             </UserContext.Provider>

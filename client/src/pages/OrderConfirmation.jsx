@@ -19,7 +19,7 @@ import { UserContext } from "../contexts/UserContext";
 import "../styles/generalStyles.css";
 
 export const OrderConfirmation = () => {
-  const [trip, setTrip] = useState();
+  const [orderDetails, setOrderDetails] = useState({});
   const [ticketType, setTicketType] = useState("");
   const [price, setPrice] = useState(0);
   const [ticketClass, setTicketClass] = useState("");
@@ -38,8 +38,12 @@ export const OrderConfirmation = () => {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
-
-      setTrip(data);
+      console.log(data);
+       // data[]
+       //map() för att filtrera ut senaste bokningen
+       // definera datan som vi ska använda på frontenden?
+      
+      setOrderDetails(data);
     };
         fetchData();
   }, [email, user.token]);
@@ -62,7 +66,7 @@ export const OrderConfirmation = () => {
           </Step>
         </Stepper>
          <Divider flexItem textAlign="left">
-              Resa
+              Din bokning
             </Divider>
             <div className="flexSpaceEven">
               <div className="nameVariableColumns">
@@ -71,7 +75,7 @@ export const OrderConfirmation = () => {
                 </Typography>
                 <Divider orientation="vertical" flexItem />
                 <Typography variant="subtitle1" padding={1}>
-                {trip.fromLocation}
+                {orderDetails.fromLocation}
                 </Typography>
                 <Divider flexItem />
                 <Typography variant="subtitle1" padding={1}>             
@@ -79,8 +83,8 @@ export const OrderConfirmation = () => {
                 </Typography>
                 <Divider orientation="vertical" flexItem />
                 <Typography variant="subtitle1" padding={1}>
-                {formatDate(trip.departureTimeAndDate)} -
-                {trip.departureTimeAndDate.substr(11, 5)}
+                {formatDate(orderDetails.departureTimeAndDate)} -
+                {orderDetails.departureTimeAndDate.substr(11, 5)}
                 </Typography>
                 <Divider flexItem />
                 <Typography variant="subtitle1" padding={1}>
@@ -88,7 +92,7 @@ export const OrderConfirmation = () => {
                 </Typography>
                 <Divider orientation="vertical" flexItem />
                 <Typography variant="subtitle1" padding={1}>
-                {trip.toLocation}
+                {orderDetails.toLocation}
                 </Typography>
                 <Divider flexItem />
                 <Typography variant="subtitle1" padding={1}>
@@ -96,8 +100,8 @@ export const OrderConfirmation = () => {
                 </Typography>
                 <Divider orientation="vertical" flexItem />
                 <Typography variant="subtitle1" padding={1}>
-                {formatDate(trip.arrivalTimeAndDate)} -
-                {trip.arrivalTimeAndDate.substr(11, 5)}
+                {formatDate(orderDetails.arrivalTimeAndDate)} -
+                {orderDetails.arrivalTimeAndDate.substr(11, 5)}
                 </Typography>
               </div>                       
             </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+import { combineDateAndTimeIntoISOString } from "../utils/helpers";
 import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -33,13 +34,20 @@ export const Landing = () => {
 
     const handleSearch = async () => {
         setLoading(true);
+        let dateTime = combineDateAndTimeIntoISOString(date, time);
+
+        if (!fromLocation || fromLocation === "" || !toLocation || toLocation === "" || !dateTime) {
+            console.log(fromLocation, toLocation, dateTime);
+            alert("An error occurred, departure station, arrival station and/or datetime weren't set propertly.");
+            return;
+        }
+
         const response = await axios.get(
-            `${process.env.REACT_APP_BACKEND_STARTING_URL}api/planTrip/${fromLocation}/${toLocation}`
+            `${process.env.REACT_APP_BACKEND_STARTING_URL}api/planTrip/${fromLocation}/${toLocation}/${dateTime}`
         ).catch(console.error);
 
         const tripsSortedByDate = response.data.sort(
-            (a, b) =>
-                new Date(a.departureTimeAndDate) - new Date(b.departureTimeAndDate)
+            (a, b) => new Date(a.departureTimeAndDate) - new Date(b.departureTimeAndDate)
         );
 
         setTrips(tripsSortedByDate);

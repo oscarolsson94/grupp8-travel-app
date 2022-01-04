@@ -56,3 +56,16 @@ Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 DELETE http://localhost:3001/api/bookings/61c18ec96cb1a4a748f2682c HTTP/1.1
 content-type: application/json
 Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### 
+
+GET http://localhost:3001/api/planTrip/61d2ca2eb3e951f92af14a90 HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+
+### 
+
+GET http://localhost:3001/api/bookings/tilloskar@outlook.com HTTP/1.1
+content-type: application/json
+Authorization: Bearer REPLACE_WITH_JWT_TOKEN
+

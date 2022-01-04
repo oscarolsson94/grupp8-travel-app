@@ -5,15 +5,6 @@ import axios from "axios";
 import Typography from "@mui/material/Typography";
 import { BookingItem } from "../components/Bookings/BookingItem";
 
-const heroDivStyle = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    width: "100%",
-};
-
 const containerStyle = {
     display: "flex",
     flexDirection: "column",
@@ -30,24 +21,22 @@ export const MyPages = () => {
     const { user } = useContext(UserContext);
     const [bookings, setBookings] = useState([]);
 
-    const getBookings = async () => {
-        const config = {
-            headers: { authorization: `Bearer ${user.token}` },
+    useEffect(() => {
+        const getBookings = async () => {
+            const config = {
+                headers: { authorization: `Bearer ${user.token}` },
+            };
+
+            const response = await axios.get(
+                `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/${user.email}`,
+                config
+            );
+            setBookings(response.data);
+            console.log(response.data);
         };
 
-        const response = await axios.get(
-            `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/${user.email}`,
-            config
-        );
-        setBookings(response.data);
-        console.log(response.data);
-    };
-
-    console.log("hello");
-
-    useEffect(() => {
         getBookings();
-    }, []);
+    }, [user]);
 
     if (!user.token) return <Redirect to="/login" />;
 

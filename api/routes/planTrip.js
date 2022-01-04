@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
     const trip = await TripPlan.findOne({ _id: req.params.id });
     res.send(trip);
   } catch (error) {
-    res.status(404).json(err);
+    res.status(404).json(error);
   }
 });
 

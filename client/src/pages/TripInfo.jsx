@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { formatDate } from "../utils/helpers";
+import { formatDate, formatTime } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -52,23 +52,36 @@ export const TripInfo = () => {
   }, [id, user.token]);
 
   const handlePurchase = async () => {
-    await axios.post(
-      `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings`,
-      {
-        userEmail: user.email,
-        fromLocation: trip.fromLocation,
-        toLocation: trip.toLocation,
-        departureTimeAndDate: trip.departureTimeAndDate,
-        arrivalTimeAndDate: trip.arrivalTimeAndDate,
-        passengerType: ticketType,
-        ticketClass: ticketClass,
-        price: price * multiplier,
-      },
-      {
-        headers: { Authorization: `Bearer ${user.token}` },
+    try {
+      let res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings`,
+        {
+          userEmail: user.email,
+          fromLocation: trip.fromLocation,
+          toLocation: trip.toLocation,
+          departureTimeAndDate: trip.departureTimeAndDate,
+          arrivalTimeAndDate: trip.arrivalTimeAndDate,
+          passengerType: ticketType,
+          ticketClass: ticketClass,
+          price: price * multiplier,
+        },
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
+      history.push(`/OrderConfirmation/${res.data._id}`);
+    } catch (error) { 
+      if (error.response) {
+            console.error(error.response.data);
+            console.error(error.response.status);
+            console.error(error.response.headers);
+        } else if (error.request) {
+            console.error(error.request);
+        } else {
+            console.error('Error', error.message);
+        }
+        console.error(error.config);
       }
-    );
-    history.push("/OrderConfirmation");
   };
 
   const handleChange = (e) => {
@@ -126,12 +139,12 @@ export const TripInfo = () => {
               <Divider orientation="vertical" flexItem />
               <Typography variant="subtitle1" padding={1}>
                 Avgår: {formatDate(trip.departureTimeAndDate)} -
-                {trip.departureTimeAndDate.substr(11, 5)}
+                {formatTime(trip.departureTimeAndDate)}
               </Typography>
               <Divider orientation="vertical" flexItem />
               <Typography variant="subtitle1" padding={1}>
                 Framme: {formatDate(trip.arrivalTimeAndDate)} -
-                {trip.arrivalTimeAndDate.substr(11, 5)}
+                {formatTime(trip.arrivalTimeAndDate)}
               </Typography>
             </div>
             <Divider

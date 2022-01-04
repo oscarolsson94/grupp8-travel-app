@@ -30,6 +30,23 @@ export const formatDate = (dateStr) => {
     return "";
 };
 
+
+export const formatTime = (dateStr) => {
+    const isDateAStr = !isNaN(Date.parse(dateStr));
+
+    if (isDateAStr) {
+        const date = new Date(dateStr);
+
+       
+        const hoursTime = date.getHours()
+        const minTime = date.getMinutes()
+
+        return `${hoursTime}:${minTime}`;
+    }
+
+    return "";
+};
+
 export const combineDateAndTimeIntoISOString = (date, time) => {
     if (!(date instanceof Date) || !(time instanceof Date)) {
         return null;
@@ -38,3 +55,4 @@ export const combineDateAndTimeIntoISOString = (date, time) => {
     return new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     + ` ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`).toISOString();
 }
+

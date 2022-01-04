@@ -46,7 +46,7 @@ function App() {
                         <Route path="/tripinfo/:id" component={TripInfo} />
                         <Route path="/mypages" exact component={MyPages} />
                         <Route path="/bookinginfo/:id" component={BookingInfo} />
-                        <Route path="/OrderConfirmation" exact component={OrderConfirmation} />
+                        <Route path="/OrderConfirmation/:id" component={OrderConfirmation} />
                     </Switch>
                 </Router>
             </UserContext.Provider>

@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
       <ul>
       <li> Bokningsnummer: xxxxxx </li>
       <li> Bokad av ${data.firstName} ${data.lastName} </li>
-      <li> E-post: usertest_12@outlook.com </li>
+      <li> E-post: ${data.email} </li>
       </ul>
       <br />
 
@@ -75,7 +75,7 @@ router.post('/', (req, res) => {
       res.send(error)
     }
     else {
-      res.send('Success')
+      res.send('Email Sent')
       console.log('Success');
     }
   })

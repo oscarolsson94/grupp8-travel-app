@@ -36,6 +36,7 @@ const [orderDetails, setOrderDetails] = useState();
       {
         firstName: user.firstName,
         lastName: user.lastName,
+        email: orderDetails.userEmail,
         toLocation: orderDetails.toLocation,
         fromLocation: orderDetails.fromLocation,
         departureDate: formatDate(orderDetails.departureTimeAndDate),

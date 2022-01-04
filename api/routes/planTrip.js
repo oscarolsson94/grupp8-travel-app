@@ -5,14 +5,25 @@ import verify from "../verifyToken.js";
 const router = express.Router();
 
 //fundering här om man ska lägga in parametrarna in i en parameter istället, typ :search och hämta ut bägge variablerna ur den - DE
-router.get("/:fromLocation/:toLocation", async (req, res) => {
+router.get("/:fromLocation/:toLocation/:departureDateTime", async (req, res) => {
   try {
+    let dateTimeRangeStart = new Date(req.params.departureDateTime);
+    let dateTimeRangeEnd = new Date(req.params.departureDateTime);
+
+    // Subtract 30 minutes.
+    dateTimeRangeStart.setMinutes(dateTimeRangeStart.getMinutes() - 30);
+
+    // Add 1 day.
+    dateTimeRangeEnd.setDate(dateTimeRangeEnd.getDate() + 1);
+
     const trips = await TripPlan.find({
       fromLocation: req.params.fromLocation,
       toLocation: req.params.toLocation,
+      departureTimeAndDate: { $gte: dateTimeRangeStart, $lte: dateTimeRangeEnd }
     });
     res.status(200).json(trips);
   } catch (err) {
+    console.log(err);
     res.status(500).json("No trips match your search");
   }
 });

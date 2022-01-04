@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
     port: 587,
     auth: {
       user: 'bookingtest_12@outlook.com',
-        pass: 'booking1234!'
+      pass: 'booking1234!'
   },
   tls: {
         ciphers:'SSLv3'
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
     <hr>
       <ul>
       <li> Bokningsnummer: xxxxxx </li>
-      <li> Bokad av ${data.name} </li>
+      <li> Bokad av ${data.firstName} ${data.lastName} </li>
       <li> E-post: usertest_12@outlook.com </li>
       </ul>
       <br />
@@ -50,9 +50,9 @@ router.post('/', (req, res) => {
       <hr>
       <ul>
       <li> Från: ${data.fromLocation} – Till: ${data.toLocation} </li>
-      <li> Avgår: ${data.departureDate} ${data.departureTime} </li>
-      <li> Framme: ${data.arrivalDate} ${data.arrivalTime}  </li>
-      <li> ${data.name}, ${data.passengerType} </li>
+      <li> Avgår: ${data.departureDate} ${data.departureTime}  
+      Framme: ${data.arrivalDate} ${data.arrivalTime}  </li>
+      <li> ${data.firstName} ${data.lastName}, ${data.passengerType} </li>
       </ul>
       <br />
 

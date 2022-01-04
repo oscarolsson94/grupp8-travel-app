@@ -34,7 +34,8 @@ const [orderDetails, setOrderDetails] = useState();
     await axios.post(
       `${process.env.REACT_APP_BACKEND_STARTING_URL}api/contact`,
       {
-        name: "Arsalan Habib",
+        firstName: user.firstName,
+        lastName: user.lastName,
         toLocation: orderDetails.toLocation,
         fromLocation: orderDetails.fromLocation,
         departureDate: formatDate(orderDetails.departureTimeAndDate),

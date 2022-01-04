@@ -4,9 +4,9 @@ const BookingSchema = new mongoose.Schema(
   {
     userEmail: { type: String, required: true },
     fromLocation: { type: String, required: true },
-    departureTimeAndDate: { type: String, required: true },
+    departureTimeAndDate: { type: Date, required: true },
     toLocation: { type: String, required: true },
-    arrivalTimeAndDate: { type: String, required: true },
+    arrivalTimeAndDate: { type: Date, required: true },
     passengerType: { type: String, required: true }, //ex Adult, Child etc.
     ticketClass: { type: String }, //ex 1:st class
     price: { type: Number, required: true },
@@ -22,8 +22,8 @@ const BookingSchema = new mongoose.Schema(
       {
         location: { type: String },
         waitingTime: { type: String },
-        transferArrival: { type: String },
-        transferDeparture: { type: String },
+        transferArrival: { type: Date },
+        transferDeparture: { type: Date },
       },
     ],
   },

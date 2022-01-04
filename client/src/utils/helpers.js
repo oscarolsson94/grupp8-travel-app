@@ -30,6 +30,7 @@ export const formatDate = (dateStr) => {
     return "";
 };
 
+
 export const formatTime = (dateStr) => {
     const isDateAStr = !isNaN(Date.parse(dateStr));
 
@@ -45,3 +46,13 @@ export const formatTime = (dateStr) => {
 
     return "";
 };
+
+export const combineDateAndTimeIntoISOString = (date, time) => {
+    if (!(date instanceof Date) || !(time instanceof Date)) {
+        return null;
+    }
+
+    return new Date(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    + ` ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`).toISOString();
+}
+

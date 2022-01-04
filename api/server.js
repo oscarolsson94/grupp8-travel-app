@@ -8,6 +8,8 @@ import ticketClassRoutes from "./routes/ticketClass.js";
 import stationsRoutes from "./routes/stations.js";
 import cors from "cors";
 
+import contactMail from "./routes/contact.js";
+
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
@@ -34,6 +36,7 @@ app.use("/api/ticketClass", ticketClassRoutes);
 
 app.use("/api/stations", stationsRoutes);
 
+app.use("/api/contact", contactMail);
 app.listen(PORT, () => {
     console.log(`Backend running on port ${PORT}`);
 });

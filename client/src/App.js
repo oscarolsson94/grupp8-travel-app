@@ -10,6 +10,7 @@ import { MyPages } from "./pages/MyPages";
 import { BookingInfo } from "./pages/BookingInfo";
 import { Navbar } from "./components/Navbar";
 import { OrderConfirmation } from "./pages/OrderConfirmation";
+import { Contact } from "./pages/Contact";
 
 const appStyles = {
     backgroundColor: "#65AFFF",
@@ -47,6 +48,7 @@ function App() {
                         <Route path="/mypages" exact component={MyPages} />
                         <Route path="/bookinginfo/:id" component={BookingInfo} />
                         <Route path="/OrderConfirmation/:id" component={OrderConfirmation} />
+                        <Route path="/contact" exact component={Contact} />
                     </Switch>
                 </Router>
             </UserContext.Provider>

@@ -11,7 +11,6 @@ import { formatDate, formatTime } from "../utils/helpers";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import "../styles/generalStyles.css";
-import ContactForm from "../components/Bookings/ContactForm";
 
 export const OrderConfirmation = () => {
   const [orderDetails, setOrderDetails] = useState();
@@ -94,7 +93,6 @@ export const OrderConfirmation = () => {
         </div>
       </div>
       )}
-     <ContactForm />
     </div>
   );
 };

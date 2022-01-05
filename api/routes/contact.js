@@ -34,13 +34,13 @@ router.post('/', (req, res) => {
  let mailOptions = {
     from: 'bookingtest_12@outlook.com',
     to: 'usertest_12@outlook.com',  //password: booking1234!
-    subject: `Bokningsnummer: xxxxxxx`,
+    subject: `Bokningsnummer: ${data.bookingNumber}`,
     html: `
     
     <h3>Tack för din bokning!</h3>
     <hr>
       <ul>
-      <li> Bokningsnummer: xxxxxx </li>
+      <li> Bokningsnummer: ${data.bookingNumber} </li>
       <li> Bokad av ${data.firstName} ${data.lastName} </li>
       <li> E-post: ${data.email} </li>
       </ul>
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
       <hr>
       <ul>
       <li> Datum: ${data.currentDate} </li>
-      <li> Orgnr: xxxxxxxxxxx </li>
+      <li> Orgnr: 1636456732 </li>
       </ul>
       <h4 style = "text-align:right;"> Att betala ${data.price} SEK</h4>
       <hr>

@@ -34,6 +34,7 @@ const [orderDetails, setOrderDetails] = useState();
     await axios.post(
       `${process.env.REACT_APP_BACKEND_STARTING_URL}api/contact`,
       {
+        bookingNumber: Math.random().toString(9).substring(2, 8),
         firstName: user.firstName,
         lastName: user.lastName,
         email: orderDetails.userEmail,
@@ -49,7 +50,7 @@ const [orderDetails, setOrderDetails] = useState();
 
       },
     );
-    history.push("/contact");
+    history.push("/BookingConfirmation");
 
     setStatus("Boka biljett");
     

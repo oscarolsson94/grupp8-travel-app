@@ -2,7 +2,7 @@ import { Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React from "react";
 import "../styles/generalStyles.css";
 
-export const Contact = () => {
+export const BookingConfirmation = () => {
   return (
     <div className="heroDivStyle">
       <Typography variant="h2" color="white">

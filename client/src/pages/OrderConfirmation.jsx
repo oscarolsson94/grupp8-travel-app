@@ -93,7 +93,6 @@ export const OrderConfirmation = () => {
         </div>
       </div>
       )}
-
     </div>
   );
 };

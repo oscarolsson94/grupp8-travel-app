@@ -51,8 +51,30 @@ export const TripInfo = () => {
     fetchData();
   }, [id, user.token]);
 
+   const handleBooking = async () => {
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_STARTING_URL}api/contact`,
+      {
+        bookingNumber: Math.random().toString(9).substring(2, 8),
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        toLocation: trip.toLocation,
+        fromLocation: trip.fromLocation,
+        departureDate: formatDate(trip.departureTimeAndDate),
+        departureTime: formatTime(trip.departureTimeAndDate),
+        arrivalDate: formatDate(trip.arrivalTimeAndDate),
+        arrivalTime: formatTime(trip.arrivalTimeAndDate),
+        passengerType: ticketType,
+        price: price * multiplier,
+        currentDate: Date()
+      },
+    );    
+  };
+
   const handlePurchase = async () => {
     try {
+      handleBooking();
       let res = await axios.post(
         `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings`,
         {

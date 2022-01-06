@@ -10,6 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { Redirect } from "react-router-dom";
 import "../styles/generalStyles.css";
 
 export const OrderConfirmation = () => {
@@ -33,6 +34,9 @@ export const OrderConfirmation = () => {
     };
         fetchData();
   }, [id, user.token]);
+
+  if (!user.token) return <Redirect to="/login" />;
+
 
   return (
     <div className="heroDivStyle">

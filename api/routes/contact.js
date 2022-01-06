@@ -7,19 +7,13 @@ router.post('/', (req, res) => {
   
   let data = req.body
   let smtpTransport = nodemailer.createTransport({
-    Server: "smtp.office365.com",
-    host: "smtp-mail.outlook.com",
-    secureConnection: false,
-    port: 587,
-    auth: {
-      user: 'bookingtest_12@outlook.com',
-      pass: 'booking1234!'
-  },
-  tls: {
-        ciphers:'SSLv3'
-    },
-    logger: true,
-    debug: true
+   host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "3c5ba5ebf2ae1c",
+    pass: "0bfb5c78faa3d5"
+  }
+  
 });
    
 
@@ -30,6 +24,11 @@ router.post('/', (req, res) => {
     console.log("Ready to Send");
   }
 });
+
+  //Note: to check the e-post you need to browse
+  //https://mailtrap.io/
+  //Login with usertest_12@outlook.com
+  //password: booking1234
 
  let mailOptions = {
     from: 'bookingtest_12@outlook.com',

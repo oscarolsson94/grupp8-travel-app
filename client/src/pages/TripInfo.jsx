@@ -14,6 +14,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import "../styles/generalStyles.css";
@@ -26,9 +27,9 @@ const PRICES = {
 
 export const TripInfo = () => {
   const [trip, setTrip] = useState();
-  const [ticketType, setTicketType] = useState("");
-  const [price, setPrice] = useState(0);
-  const [ticketClass, setTicketClass] = useState("");
+  const [ticketType, setTicketType] = useState("Vuxen");
+  const [price, setPrice] = useState(PRICES.ADULT);
+  const [ticketClass, setTicketClass] = useState("2:a klass");
   const [multiplier, setMultiplier] = useState(1);
   const [showStops, setShowStops] = useState(false);
 
@@ -259,17 +260,26 @@ export const TripInfo = () => {
               </FormControl>
             </div>
             <div>
-              <Typography variant="h5">Pris: {price * multiplier}:-</Typography>
-            </div>
+              <Typography align="center" variant="h5">Pris: {price * multiplier}:-</Typography>
+            <Button
+              endIcon={<KeyboardReturnIcon />}
+              variant="contained"
+              onClick={() => history.goBack()}
+              style={{left: -320}}
+              size="large"
+            >
+              tillbaka
+            </Button>
             <Button
               endIcon={<CreditScoreIcon />}
               variant="contained"
               onClick={handlePurchase}
-              style={{ background: "#FFA5A5" }}
+              style={{ background: "#FFA5A5" , left:-75}}
               size="large"
             >
               Gå till betalning
             </Button>
+            </div>
           </div>
         )}
       </div>

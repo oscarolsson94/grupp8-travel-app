@@ -18,7 +18,7 @@ import { CircularProgress, Grid } from "@mui/material";
 
 export const Landing = () => {
   const { user } = useContext(UserContext);
-  const [trips, setTrips] = useState([]);
+  const [trips, setTrips] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Holds searchs results when searching for stations.
@@ -199,7 +199,7 @@ export const Landing = () => {
           </Grid>
         )}
       </div>
-      {trips.length === 0 && trips !== undefined && (
+      {trips && trips.length === 0 && (
         <div
           className="containerStyle"
           style={{
@@ -213,7 +213,7 @@ export const Landing = () => {
           </Typography>
         </div>
       )}
-      {trips.length > 0 && (
+      {trips && trips.length > 0 && (
         <div
           className="containerStyle"
           style={{
@@ -227,7 +227,6 @@ export const Landing = () => {
           ))}
         </div>
       )}
-      {/* </div> */}
     </div>
   );
 };

@@ -14,10 +14,11 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
-import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import "../styles/generalStyles.css";
+import { SearchContext } from "../contexts/SearchContext";
 
 const PRICES = {
   YOUTH: 199,
@@ -36,6 +37,7 @@ export const TripInfo = () => {
   const history = useHistory();
   const { id } = useParams();
   const { user } = useContext(UserContext);
+  const { setSearchParams } = useContext(SearchContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +54,7 @@ export const TripInfo = () => {
     fetchData();
   }, [id, user.token]);
 
-   const handleBooking = async () => {
+  const handleBooking = async () => {
     await axios.post(
       `${process.env.REACT_APP_BACKEND_STARTING_URL}api/contact`,
       {
@@ -68,9 +70,9 @@ export const TripInfo = () => {
         arrivalTime: formatTime(trip.arrivalTimeAndDate),
         passengerType: ticketType,
         price: price * multiplier,
-        currentDate: Date()
-      },
-    );    
+        currentDate: Date(),
+      }
+    );
   };
 
   const handlePurchase = async () => {
@@ -92,19 +94,20 @@ export const TripInfo = () => {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
+      setSearchParams({});
       history.push(`/OrderConfirmation/${res.data._id}`);
-    } catch (error) { 
+    } catch (error) {
       if (error.response) {
-            console.error(error.response.data);
-            console.error(error.response.status);
-            console.error(error.response.headers);
-        } else if (error.request) {
-            console.error(error.request);
-        } else {
-            console.error('Error', error.message);
-        }
-        console.error(error.config);
+        console.error(error.response.data);
+        console.error(error.response.status);
+        console.error(error.response.headers);
+      } else if (error.request) {
+        console.error(error.request);
+      } else {
+        console.error("Error", error.message);
       }
+      console.error(error.config);
+    }
   };
 
   const handleChange = (e) => {
@@ -260,25 +263,27 @@ export const TripInfo = () => {
               </FormControl>
             </div>
             <div>
-              <Typography align="center" variant="h5">Pris: {price * multiplier}:-</Typography>
-            <Button
-              endIcon={<KeyboardReturnIcon />}
-              variant="contained"
-              onClick={() => history.goBack()}
-              style={{left: -320}}
-              size="large"
-            >
-              tillbaka
-            </Button>
-            <Button
-              endIcon={<CreditScoreIcon />}
-              variant="contained"
-              onClick={handlePurchase}
-              style={{ background: "#FFA5A5" , left:-75}}
-              size="large"
-            >
-              Gå till betalning
-            </Button>
+              <Typography align="center" variant="h5">
+                Pris: {price * multiplier}:-
+              </Typography>
+              <Button
+                endIcon={<KeyboardReturnIcon />}
+                variant="contained"
+                onClick={() => history.goBack()}
+                style={{ left: -320 }}
+                size="large"
+              >
+                tillbaka
+              </Button>
+              <Button
+                endIcon={<CreditScoreIcon />}
+                variant="contained"
+                onClick={handlePurchase}
+                style={{ background: "#FFA5A5", left: -75 }}
+                size="large"
+              >
+                Gå till betalning
+              </Button>
             </div>
           </div>
         )}

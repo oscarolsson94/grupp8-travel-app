@@ -30,15 +30,23 @@ export const Landing = () => {
     const [toLocation, setToLocation] = useState("");
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
-    
 
+    const canSearchForTrips = () => fromLocation !== "" && toLocation !== "";
+
+    /**
+     * Fetch trips from API.
+     * @returns Promise
+     */
     const handleSearch = async () => {
         setLoading(true);
         let dateTime = combineDateAndTimeIntoISOString(date, time);
 
-        if (!fromLocation || fromLocation === "" || !toLocation || toLocation === "" || !dateTime) {
-            console.log(fromLocation, toLocation, dateTime);
-            alert("An error occurred, departure station, arrival station and/or datetime weren't set propertly.");
+        // The submit <Button> is disable if '!canSearchForTrips()' so we don't need another check in the frontend for
+        // empty "Från" (fromLocation) and "Till" (toLocation) fields. Additional validation should happen in the backend.
+        if (!dateTime) {
+            console.error("'dateTime' is falsy", "dateTime:", dateTime, "\ndate:", date, "\ntime:", time);
+            alert(`An error occurred! "'dateTime' is falsy", dateTime: ${dateTime}, date: ${date}, time: ${time}`);
+            setLoading(false);
             return;
         }
 
@@ -59,7 +67,7 @@ export const Landing = () => {
      * @param {string} input the station search term.
      * @param {string} subResource the "sub resource" on the endpoint (i.e. "from" or "to" in /api/stations/[from|to]/stationNameSearchTerm).
      * @param {function} setStateCallback the SetState function to call (i.e. "setFromLocations" or "setToLocations").
-     * @returns void
+     * @returns Promise
      */
     const getStations = async (input, subResource, setStateCallback) => {
         if (input == null || input.length < 1) {
@@ -173,6 +181,7 @@ export const Landing = () => {
                     <Button
                         endIcon={<SendIcon />}
                         variant="contained"
+                        disabled={!canSearchForTrips()}
                         onClick={handleSearch}
                         style={{ background: "#FFA5A5" }}
                         size="large"

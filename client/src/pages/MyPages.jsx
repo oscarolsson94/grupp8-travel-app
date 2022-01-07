@@ -27,12 +27,17 @@ export const MyPages = () => {
                 headers: { authorization: `Bearer ${user.token}` },
             };
 
-            const response = await axios.get(
-                `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/${user.email}`,
-                config
-            );
-            setBookings(response.data);
-            console.log(response.data);
+            try {
+                const response = await axios.get(
+                    `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/${user.email}`,
+                    config
+                );
+                setBookings(response.data);
+                console.log(response.data);
+            }
+            catch (error) {
+                console.error(error);
+            }
         };
 
         getBookings();

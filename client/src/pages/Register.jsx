@@ -9,6 +9,7 @@ import {
     CircularProgress,
 } from "@material-ui/core";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import Alert from "@mui/material/Alert";
 import { Link, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
@@ -22,6 +23,7 @@ export const Register = () => {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
     const { user } = useContext(UserContext);
+    const [errorMessages, setErrorMessages] = useState({});
 
     const paperStyle = {
         padding: 20,
@@ -34,6 +36,7 @@ export const Register = () => {
 
     const handleRegister = () => {
         setLoading(true);
+        setErrorMessages({});
         if (password === confirmPassword) {
             axios
                 .post(
@@ -49,6 +52,13 @@ export const Register = () => {
                     console.log("account created");
                     setLoading(false);
                     history.push("/login");
+                })
+                .catch(error => {
+                    if (error.response.data === 11000) {
+                        setErrorMessages(errorMessages => ({...errorMessages, ["email"]: "Den e-post adressen har redan registrerats."}));
+                    }
+                    setLoading(false);
+                    console.log(errorMessages);
                 });
         } else {
             setLoading(false);
@@ -66,6 +76,9 @@ export const Register = () => {
                     </Avatar>
                     <h2>Register</h2>
                 </Grid>
+                {Object.keys(errorMessages).length > 0 &&
+                    Object.keys(errorMessages).map(key => <Alert severity="error" key={key}>{errorMessages[key]}</Alert>)
+                } 
                 <TextField
                     label="First name"
                     placeholder="Enter first name"

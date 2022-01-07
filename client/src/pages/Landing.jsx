@@ -15,10 +15,15 @@ import TimePicker from "@mui/lab/TimePicker";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import "../styles/generalStyles.css";
 import { CircularProgress, Grid } from "@mui/material";
+import { SearchContext } from "../contexts/SearchContext";
 
 export const Landing = () => {
   const { user } = useContext(UserContext);
-  const [trips, setTrips] = useState(null);
+  const { searchParams, setSearchParams } = useContext(SearchContext);
+
+  const [trips, setTrips] = useState(
+    searchParams.trips ? searchParams.trips : null
+  );
   const [loading, setLoading] = useState(false);
 
   // Holds searchs results when searching for stations.
@@ -26,10 +31,12 @@ export const Landing = () => {
   const [toLocations, setToLocations] = useState([]);
 
   // Form values, departure & arrival stations and date & time.
-  const [fromLocation, setFromLocation] = useState("");
-  const [toLocation, setToLocation] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
+  const [fromLocation, setFromLocation] = useState(
+    searchParams.fromLocation || ""
+  );
+  const [toLocation, setToLocation] = useState(searchParams.toLocation || "");
+  const [date, setDate] = useState(searchParams.date || new Date());
+  const [time, setTime] = useState(searchParams.time || new Date());
 
   const handleSearch = async () => {
     setLoading(true);
@@ -61,6 +68,14 @@ export const Landing = () => {
     );
 
     setTrips(tripsSortedByDate);
+    setSearchParams({
+      ...searchParams,
+      trips: tripsSortedByDate,
+      toLocation,
+      fromLocation,
+      date,
+      time,
+    });
     setLoading(false);
   };
 
@@ -118,11 +133,12 @@ export const Landing = () => {
       <div className="containerStyle">
         <div className="inputContainer">
           <Autocomplete
+            value={fromLocation}
             disablePortal
             id="combo-box-demo"
             options={fromLocations}
             onInputChange={(e) =>
-              getStations(e.target.value, "from", setFromLocations)
+              e && getStations(e.target.value, "from", setFromLocations)
             }
             onChange={(e, values) => setFromLocation(values ?? "")}
             sx={{ width: 300 }}
@@ -137,11 +153,12 @@ export const Landing = () => {
             )}
           />
           <Autocomplete
+            value={toLocation}
             disablePortal
             id="combo-box-demo"
             options={toLocations}
             onInputChange={(e) =>
-              getStations(e.target.value, "to", setToLocations)
+              e && getStations(e.target.value, "to", setToLocations)
             }
             onChange={(e, values) => setToLocation(values ?? "")}
             sx={{ width: 300 }}

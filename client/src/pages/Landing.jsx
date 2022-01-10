@@ -177,6 +177,7 @@ export const Landing = () => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DesktopDatePicker
               label="Datum"
+              disablePast
               inputFormat="yyyy/MM/dd"
               mask="____/__/__"
               value={date}

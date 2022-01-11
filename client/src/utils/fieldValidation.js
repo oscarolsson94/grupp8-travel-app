@@ -1,7 +1,10 @@
 const patterns = {
-    validName: "^.+", // simplified, something like '^[\p{L}'][ \p{L}'-]*[\p{L}]$' should probably be used, but unclear on browser-support for '\p{L}'.
-    validEmail: "^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
-    validPassword: "(?=.*\w)(?=.*\w)(?=.*\d)(?=.*[@$!%*#?&_.,]).{8,}",
+    // eslint-disable-next-line
+    validName: /^.+/, // simplified, something like '^[\p{L}'][ \p{L}'-]*[\p{L}]$' should probably be used, but unclear on browser-support for '\p{L}'.
+    // eslint-disable-next-line
+    validEmail: /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+    // eslint-disable-next-line
+    validPassword: /(?=.*[a-zåäö])(?=.*[A-ZÅÄÖ])(?=.*\d)(?=.*[@$!%*#?&_.,]).{8,}/,
 };
 
 const rules = {
@@ -11,7 +14,8 @@ const rules = {
 };
 
 const messagesInvalid = {
-    name: `Det angivna namnet är ej giltigt.`,
+    firstName: `Det angivna förnamnet är ej giltigt.`,
+    lastName: `Det angivna efternamnet är ej giltigt.`,
     email: `Den angivna e-post adressen är ej giltigt. ${rules.validEmail ?? ""}`,
     password: `Det angivna namnet är ej giltigt. ${rules.validPassword ?? ""}`,
     confirmPassword: `De angivna lösenorden matchar ej.`,
@@ -19,11 +23,15 @@ const messagesInvalid = {
 
 export const validateName = (name) => new RegExp(patterns.validName, "ui").test(name);
 export const validateEmail = (email) => new RegExp(patterns.validEmail, "ui").test(email);
-export const validatePassword = (password) => new RegExp(patterns.validPassword, "u").test(password);
-export const validateConfirmPassword = (confirmPassword) => new RegExp(patterns.validConfirmPassword, "u").test(confirmPassword);
+export const validatePassword = (password) => new RegExp(patterns.validPassword, "g").test(password);
 
-export default {
-    patterns: patterns,
-    explanations: rules,
-    validateEmail: validateEmail
+const fieldValidation = {
+    patterns,
+    rules,
+    messagesInvalid,
+    validateName,
+    validateEmail,
+    validatePassword,
 };
+
+export default fieldValidation;

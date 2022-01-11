@@ -13,5 +13,5 @@ TO RUN THE APP:
 
 1. cd /api
 2. npm install
-3. npm start
+3. npm run devstart
 4. Backend is now running @ http://localhost:3001/api

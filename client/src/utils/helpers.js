@@ -56,3 +56,10 @@ export const combineDateAndTimeIntoISOString = (date, time) => {
     + ` ${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`).toISOString();
 }
 
+/**
+ * Safe hasOwnProperty() check for objects.
+ * @param {object} object The Object in which to look for the property.
+ * @param {string} key The property to look for.
+ * @returns {boolean} true if the property exists, otherwise false.
+ */
+export const hasKey = (object, key) => Object.prototype.hasOwnProperty.call(object, key);

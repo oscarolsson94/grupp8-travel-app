@@ -4,19 +4,20 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  Button
 } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
-import { useParams } from "react-router-dom";
+import { Redirect, useHistory , useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { Redirect } from "react-router-dom";
 import "../styles/generalStyles.css";
 
 export const OrderConfirmation = () => {
   const [orderDetails, setOrderDetails] = useState();
   //const [showStops, setShowStops] = useState(false);
 
+  const  history  = useHistory();
   const { id } = useParams();
   const { user } = useContext(UserContext);
 
@@ -102,7 +103,15 @@ export const OrderConfirmation = () => {
           <br />
           <span>Din bokning har skickats till {user.email}. Där finns information om resan och hur du betalar din biljett.</span>
           <br />
-        </div>        
+        </div>
+        <Button
+                variant="contained"
+                onClick= {() => history.push("/")}
+                style={{ background: "#FFA5A5", left: -75 }}
+                size="large"
+              >
+                Boka ny biljett
+              </Button>
       </div>
       )}
     </div>

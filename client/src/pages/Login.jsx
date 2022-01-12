@@ -62,19 +62,19 @@ export const Login = () => {
                     <Avatar style={avatarStyle}>
                         <LockOpenIcon />
                     </Avatar>
-                    <h2>Sign In</h2>
+                    <h2>Logga in</h2>
                 </Grid>
                 <TextField
-                    label="Email"
-                    placeholder="Enter email"
+                    label="E-post"
+                    placeholder="Mata in din e-post adress"
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
-                    label="Password"
-                    placeholder="Enter password"
+                    label="Lösenord"
+                    placeholder="Mata in ditt lösenord"
                     type="password"
                     fullWidth
                     required
@@ -88,7 +88,7 @@ export const Login = () => {
                     fullWidth
                     onClick={handleLogin}
                 >
-                    Sign in
+                    Logga in
                 </Button>
                 {loading && (
                     <Grid align="center">
@@ -97,9 +97,9 @@ export const Login = () => {
                 )}
                 <Typography>
                     {" "}
-                    Don't have an account?{" "}
+                    Har du inte ett konto?{" "}
                     <Link style={{ textDecoration: "none" }} to={"/register"}>
-                        Register
+                        Registrera ett nytt konto här
                     </Link>
                 </Typography>
             </Paper>

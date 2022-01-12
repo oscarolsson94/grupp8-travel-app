@@ -129,11 +129,11 @@ export const Register = () => {
                     <Avatar style={avatarStyle}>
                         <HowToRegIcon />
                     </Avatar>
-                    <h2>Register</h2>
+                    <h2>Registrera ett nytt konto</h2>
                 </Grid>
                 <TextField
-                    label="First name"
-                    placeholder="Enter first name"
+                    label="Förnamn"
+                    placeholder="Mata in ditt förnamn"
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
@@ -142,8 +142,8 @@ export const Register = () => {
                     helperText={!form.firstName.IsValid && form.firstName.error}
                 />
                 <TextField
-                    label="Last name"
-                    placeholder="Enter last name"
+                    label="Efternamn"
+                    placeholder="Mata in ditt efternamn"
                     fullWidth
                     required
                     style={{ marginBottom: "10px" }}
@@ -152,8 +152,8 @@ export const Register = () => {
                     helperText={!form.lastName.IsValid && form.lastName.error}
                 />
                 <TextField
-                    label="Email"
-                    placeholder="Enter email address"
+                    label="E-post"
+                    placeholder="Mata in din e-post adress"
                     fullWidth
                     required
                     type="email"
@@ -163,8 +163,8 @@ export const Register = () => {
                     helperText={!form.email.IsValid && form.email.error}
                 />
                 <TextField
-                    label="Password"
-                    placeholder="Enter password"
+                    label="Lösenord"
+                    placeholder="Mata in ditt lösenord"
                     type="password"
                     fullWidth
                     required
@@ -174,8 +174,8 @@ export const Register = () => {
                     helperText={!form.password.IsValid && form.password.error}
                 />
                 <TextField
-                    label="Confirm Password"
-                    placeholder="Enter password"
+                    label="Bekräfta lösenord"
+                    placeholder="Upprepa ditt lösenord"
                     type="password"
                     fullWidth
                     required
@@ -197,13 +197,13 @@ export const Register = () => {
                     onClick={handleRegister}
                     disabled={!formIsValid}
                 >
-                    Register
+                    Registrera ett nytt konto
                 </Button>
                 <Typography>
                     {" "}
-                    Already have an account?{" "}
+                    Har du redan ett konto?{" "}
                     <Link style={{ textDecoration: "none" }} to={"/login"}>
-                        Sign in
+                        Logga in här
                     </Link>
                 </Typography>
             </Paper>

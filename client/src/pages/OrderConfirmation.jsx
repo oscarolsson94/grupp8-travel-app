@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
-import { Redirect, useHistory , useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import "../styles/generalStyles.css";
 
@@ -17,7 +17,7 @@ export const OrderConfirmation = () => {
   const [orderDetails, setOrderDetails] = useState();
   //const [showStops, setShowStops] = useState(false);
 
-  const  history  = useHistory();
+  const history = useHistory();
   const { id } = useParams();
   const { user } = useContext(UserContext);
 
@@ -33,7 +33,7 @@ export const OrderConfirmation = () => {
       console.log(data);
       setOrderDetails(data);
     };
-        fetchData();
+    fetchData();
   }, [id, user.token]);
 
   if (!user.token) return <Redirect to="/login" />;
@@ -72,7 +72,8 @@ export const OrderConfirmation = () => {
             </Typography>
             <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
-              Avgår: {formatDate(orderDetails.departureTimeAndDate)} -
+              Avgår: {formatDate(orderDetails.departureTimeAndDate)}
+              {" - "}
               {formatTime(orderDetails.departureTimeAndDate)}
             </Typography>
             <Divider flexItem />
@@ -81,7 +82,8 @@ export const OrderConfirmation = () => {
             </Typography>
             <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
-              Framme: {formatDate(orderDetails.arrivalTimeAndDate)} - 
+              Framme: {formatDate(orderDetails.arrivalTimeAndDate)}
+              {" - "}
               {formatTime(orderDetails.arrivalTimeAndDate)}
             </Typography>
             <Divider flexItem />
@@ -92,11 +94,11 @@ export const OrderConfirmation = () => {
             <Typography variant="subtitle1" padding={1}>
               Pris: {orderDetails.price} sek
             </Typography>
-            <Divider flexItem />            
+            <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
               Bokningsnummer: {orderDetails._id}
             </Typography>
-            <Divider flexItem /> 
+            <Divider flexItem />
           </div>
         </div>
         <div>
@@ -104,14 +106,16 @@ export const OrderConfirmation = () => {
           <span>Din bokning har skickats till {user.email}. Där finns information om resan och hur du betalar din biljett.</span>
           <br />
         </div>
-        <Button
-                variant="contained"
-                onClick= {() => history.push("/")}
-                style={{ background: "#FFA5A5", left: -75 }}
-                size="large"
-              >
-                Boka ny biljett
-              </Button>
+        <div className="inputContainer buttonRowSpaceBetween" style={{ justifyContent: "center", }}>
+          <Button
+            variant="contained"
+            onClick={() => history.push("/")}
+            style={{ background: "#FFA5A5" }}
+            size="large"
+          >
+            Boka ny biljett
+          </Button>
+        </div>
       </div>
       )}
     </div>

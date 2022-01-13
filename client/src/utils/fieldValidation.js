@@ -10,7 +10,7 @@ const patterns = {
 const rules = {
     validName: "Minst en bokstav",
     validEmail: "E-post adressen kan ej innehålla svenska tecken, måste börja med en bokstav (A-Z), måste innehålla ett snabel-a ('@'), samt tecken innan och efter snabel-a:et.",
-    validPassword: "Minst 8 tecken, minst en liten bokstav, minst en stor bokstav, minst en siffra, samt minst en av följande tecken '@$!%*#?&_-'",
+    validPassword: "Minst 8 tecken, minst en liten bokstav, minst en stor bokstav, minst en siffra, samt minst en av följande tecken '@$!%*#?&_.,'",
 };
 
 const messagesInvalid = {

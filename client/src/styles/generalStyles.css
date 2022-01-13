@@ -115,6 +115,12 @@
 }
 
 @media only screen and (max-width: 600px) {
+  h4 {
+    font-size: 1.8rem !important;
+  }
+  h2 {
+    font-size: 2rem !important;
+  }
   .tripItemStyle {
     padding: 0 5px;
   }
@@ -129,6 +135,9 @@
 }
 
 @media only screen and (min-width: 601px) {
+  h2 {
+    font-size: 3rem !important;
+  }
   .containerStyle {
     width: 75%;
   }

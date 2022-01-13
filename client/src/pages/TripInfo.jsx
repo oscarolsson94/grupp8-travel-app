@@ -273,7 +273,7 @@ export const TripInfo = () => {
                 style={{ left: -320 }}
                 size="large"
               >
-                tillbaka
+                Tillbaka
               </Button>
               <Button
                 endIcon={<CreditScoreIcon />}
@@ -282,7 +282,7 @@ export const TripInfo = () => {
                 style={{ background: "#FFA5A5", left: -75 }}
                 size="large"
               >
-                Gå till betalning
+                Boka biljetten
               </Button>
             </div>
           </div>

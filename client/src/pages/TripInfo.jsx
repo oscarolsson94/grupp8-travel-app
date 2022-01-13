@@ -262,7 +262,7 @@ export const TripInfo = () => {
                 Pris: {price * multiplier}:-
               </Typography>
             </div>
-            <div className="buttonRowSpaceBetween">
+            <div className="inputContainer buttonRowSpaceBetween">
               <Button
                 endIcon={<KeyboardReturnIcon />}
                 variant="contained"

@@ -228,14 +228,7 @@ export const Landing = () => {
             />
           </LocalizationProvider>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 10,
-          }}
-        >
+        <div class="formButton">
           <Button
             endIcon={<SendIcon />}
             variant="contained"

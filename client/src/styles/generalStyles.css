@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .heroDivStyle {
   display: flex;
   flex-direction: column;
@@ -14,12 +18,12 @@
   justify-content: center;
   align-items: center;
   background: white;
-  padding: 30px;
+  padding: 10px;
   border-radius: 20px;
   max-height: 45vh;
   overflow-y: auto;
   overflow-x: hidden;
-  width: 75%;
+  /* width: 75%; */
 }
 
 .flexSpaceEven {
@@ -40,14 +44,12 @@
 
 .inputContainer {
   display: flex;
-  column-gap: 10px;
-  width: 80%;
   flex-direction: row;
+  column-gap: 10px;
   /* flex-wrap: wrap; */
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
 }
 
 .containerStyle::-webkit-scrollbar {
@@ -73,4 +75,50 @@
 
 .paymentform {
   margin-top: 120px;
+}
+
+.formButton {
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 450px) {
+  .containerStyle {
+    width: calc(100vw);
+    overflow-x: auto;
+  }
+  .inputContainer {
+    width: calc(100vw - 20px);
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .tripItemStyle {
+    padding: 0 5px;
+  }
+  .containerStyle {
+    width: calc(100vw - 20px);
+  }
+  .inputContainer {
+    width: calc(100vw - 10px);
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .containerStyle {
+    width: 75%;
+  }
+  .inputContainer {
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  .formButton {
+  }
 }

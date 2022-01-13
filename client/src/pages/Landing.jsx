@@ -37,6 +37,9 @@ export const Landing = () => {
   const [toLocation, setToLocation] = useState(searchParams.toLocation || "");
   const [date, setDate] = useState(searchParams.date || new Date());
   const [time, setTime] = useState(searchParams.time || new Date());
+  const [currentTime] = useState(searchParams.time || new Date());
+  const [currentDate] = useState(searchParams.date || new Date());
+
 
   const canSearchForTrips = () => fromLocation !== "" && toLocation !== "";
 
@@ -47,6 +50,29 @@ export const Landing = () => {
   const handleSearch = async () => {
     setLoading(true);
     let dateTime = combineDateAndTimeIntoISOString(date, time);
+
+    let currentDateTime = combineDateAndTimeIntoISOString(currentDate, currentTime);
+    let splitCurrentDate = currentDateTime.split("T");
+    let splitSelectedDate = dateTime.split("T");
+
+
+    // The past time only check and correct on the same day
+    if (splitCurrentDate[0] === splitSelectedDate[0]) {
+      console.log("Today date : ", splitCurrentDate[0]);
+      console.log("Selected date : ", splitSelectedDate[0]);
+
+      if (currentTime.getHours() > time.getHours()) {
+        console.log("Current hour : ", currentTime.getHours())
+        setTime(currentTime);
+        return;
+      }
+      else if ((currentTime.getHours() === time.getHours()) && (currentTime.getMinutes() > time.getMinutes())) {
+        console.log("Current Minutes : ", currentTime.getMinutes())
+        setTime(currentTime);
+        return;
+      }
+    }
+
 
     // The submit <Button> is disable if '!canSearchForTrips()' so we don't need another check in the frontend for
     // empty "Från" (fromLocation) and "Till" (toLocation) fields. Additional validation should happen in the backend.
@@ -183,35 +209,38 @@ export const Landing = () => {
               mask="____/__/__"
               value={date}
               onChange={(date) => setDate(date)}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) =>
+                <TextField {...params}
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ ...params.inputProps, readOnly: true, }}
+                />}
             />
             <TimePicker
               ampm={false}
               label="Tid"
               value={time}
               onChange={(time) => setTime(time)}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) =>
+                <TextField {...params}
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ ...params.inputProps, readOnly: true, }}
+                />}
             />
           </LocalizationProvider>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 10,
-          }}
-        >
-          <Button
-            endIcon={<SendIcon />}
-            variant="contained"
-            disabled={!canSearchForTrips()}
-            onClick={handleSearch}
-            style={{ background: "#FFA5A5" }}
-            size="large"
-          >
-            Sök Resa
-          </Button>
+        <div className="inputContainer buttonRowAlignRight">
+          <div className="formButton" >
+            <Button
+              endIcon={<SendIcon />}
+              variant="contained"
+              disabled={!canSearchForTrips()}
+              onClick={handleSearch}
+              style={{ background: "#FFA5A5" }}
+              size="large"
+            >
+              Sök Resa
+            </Button>
+          </div>
         </div>
         {loading && (
           <Grid align="center">

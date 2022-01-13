@@ -4,19 +4,20 @@ import {
   StepLabel,
   Stepper,
   Typography,
+  Button
 } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
-import { useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { Redirect } from "react-router-dom";
 import "../styles/generalStyles.css";
 
 export const OrderConfirmation = () => {
   const [orderDetails, setOrderDetails] = useState();
   //const [showStops, setShowStops] = useState(false);
 
+  const history = useHistory();
   const { id } = useParams();
   const { user } = useContext(UserContext);
 
@@ -32,7 +33,7 @@ export const OrderConfirmation = () => {
       console.log(data);
       setOrderDetails(data);
     };
-        fetchData();
+    fetchData();
   }, [id, user.token]);
 
   if (!user.token) return <Redirect to="/login" />;
@@ -43,7 +44,7 @@ export const OrderConfirmation = () => {
       <Typography variant="h2" color="white">
         Orderbekräftelse
       </Typography>
-      {orderDetails && (<div className="containerStyle">
+      {orderDetails && (<div className="containerStyle" style={{ maxHeight: "100vh" }}>
         <Stepper sx={{ width: "100%" }} activeStep={2} alternativeLabel>
           <Step>
             <StepLabel>Sök resa</StepLabel>
@@ -55,45 +56,65 @@ export const OrderConfirmation = () => {
             <StepLabel>Orderbekräftelse</StepLabel>
           </Step>
         </Stepper>
+        <br />
+        <div>
+          <br />
+          <span>Tack för din bokning {user.firstName}!</span>
+        </div>
+        <br />
         <Divider flexItem textAlign="left">
           Din bokning
         </Divider>
         <div className="flexSpaceEven">
-          <div className="nameVariableColumns">
+          <div className="nameVariableColumns" >
             <Typography variant="subtitle1" padding={1}>
-              Från:
-            </Typography>
-            <Divider orientation="vertical" flexItem />
-            <Typography variant="subtitle1" padding={1}>
-              {orderDetails.fromLocation}
+              Från: {orderDetails.fromLocation}
             </Typography>
             <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
-              Avgår:
-            </Typography>
-            <Divider orientation="vertical" flexItem />
-            <Typography variant="subtitle1" padding={1}>
-              {formatDate(orderDetails.departureTimeAndDate)} -
+              Avgår: {formatDate(orderDetails.departureTimeAndDate)}
+              {" - "}
               {formatTime(orderDetails.departureTimeAndDate)}
             </Typography>
             <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
-              Till:
-            </Typography>
-            <Divider orientation="vertical" flexItem />
-            <Typography variant="subtitle1" padding={1}>
-              {orderDetails.toLocation}
+              Till: {orderDetails.toLocation}
             </Typography>
             <Divider flexItem />
             <Typography variant="subtitle1" padding={1}>
-              Framme:
-            </Typography>
-            <Divider orientation="vertical" flexItem />
-            <Typography variant="subtitle1" padding={1}>
-              {formatDate(orderDetails.arrivalTimeAndDate)} -
+              Framme: {formatDate(orderDetails.arrivalTimeAndDate)}
+              {" - "}
               {formatTime(orderDetails.arrivalTimeAndDate)}
             </Typography>
+            <Divider flexItem />
+            <Typography variant="subtitle1" padding={1}>
+              Resenär: {orderDetails.passengerType} / {orderDetails.ticketClass}
+            </Typography>
+            <Divider flexItem />
+            <Typography variant="subtitle1" padding={1}>
+              Pris: {orderDetails.price} sek
+            </Typography>
+            <Divider flexItem />
+            <Typography variant="subtitle1" padding={1}>
+              Bokningsnummer: {orderDetails._id}
+            </Typography>
+            <Divider flexItem />
           </div>
+        </div>
+        <div>
+          <br />
+          <span>Din bokning har skickats till {user.email}. Där finns information om resan och hur du betalar din biljett.</span>
+          <br />
+        </div>
+        <div className="inputContainer buttonRowSpaceBetween" style={{ justifyContent: "center", }}>
+          <Button
+            variant="contained"
+            onClick={() => history.push("/")}
+            style={{ background: "#FFA5A5" }}
+            size="large"
+          >
+            Boka ny biljett
+          </Button>
         </div>
       </div>
       )}

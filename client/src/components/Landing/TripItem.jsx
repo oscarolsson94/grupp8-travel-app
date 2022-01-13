@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../../utils/helpers";
+import { formatDate, formatTime } from "../../utils/helpers";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
@@ -30,7 +30,8 @@ export const TripItem = ({ trip }) => {
         />
         <Typography paddingRight={1} paddingLeft={1}>
           Avgår: {formatDate(trip.departureTimeAndDate)}
-          {` - ${trip.departureTimeAndDate.substr(11, 5)}`}
+          {" - "}
+          {formatTime(trip.departureTimeAndDate)}
         </Typography>
         <Divider
           style={{ background: "white" }}
@@ -39,7 +40,8 @@ export const TripItem = ({ trip }) => {
         />
         <Typography paddingRight={1} paddingLeft={1}>
           Framme: {formatDate(trip.arrivalTimeAndDate)}
-          {` - ${trip.arrivalTimeAndDate.substr(11, 5)}`}
+          {" - "}
+          {formatTime(trip.arrivalTimeAndDate)}
         </Typography>
         <Divider
           style={{ background: "white" }}

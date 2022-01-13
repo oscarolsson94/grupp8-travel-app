@@ -198,10 +198,10 @@ export const TripInfo = () => {
                       Station: {stop.location}
                     </Typography>
                     <Typography paddingRight={2}>
-                      Anländer: {stop.arrivalTime.substr(11, 5)}
+                      Anländer: {formatTime(stop.arrivalTime)}
                     </Typography>
                     <Typography paddingRight={2}>
-                      Avgår: {stop.departureTime.substr(11, 5)}
+                      Avgår: {formatTime(stop.departureTime)}
                     </Typography>
                   </div>
                 ))}

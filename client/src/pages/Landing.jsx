@@ -229,7 +229,7 @@ export const Landing = () => {
           </LocalizationProvider>
         </div>
         <div className="inputContainer buttonRowAlignRight">
-          <div class="formButton" >
+          <div className="formButton" >
             <Button
               endIcon={<SendIcon />}
               variant="contained"

@@ -210,20 +210,15 @@ export const TripInfo = () => {
             <div
               style={{
                 display: "flex",
-                width: "80%",
+                // width: "80%",
                 flexWrap: "wrap",
-                justifyContent: "space-evenly",
+                justifyContent: "center",
                 alignItems: "center",
                 marginBottom: 10,
                 padding: 10,
               }}
             >
-              <FormControl
-                sx={{
-                  m: 5,
-                  minWidth: 200,
-                }}
-              >
+              <FormControl sx={{ minWidth: 200, margin: "10px", }}>
                 <InputLabel>Biljettyp</InputLabel>
                 <Select
                   MenuProps={{
@@ -239,7 +234,7 @@ export const TripInfo = () => {
                   <MenuItem value={"Vuxen"}>Vuxen</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ m: 5, minWidth: 200 }}>
+              <FormControl sx={{ m: 5, margin: "10px", }}>
                 <InputLabel>Klass</InputLabel>
                 <Select
                   MenuProps={{
@@ -266,11 +261,13 @@ export const TripInfo = () => {
               <Typography align="center" variant="h5">
                 Pris: {price * multiplier}:-
               </Typography>
+            </div>
+            <div class="buttonRowSpaceBetween">
               <Button
                 endIcon={<KeyboardReturnIcon />}
                 variant="contained"
                 onClick={() => history.goBack()}
-                style={{ left: -320 }}
+                // style={{ left: -320 }}
                 size="large"
               >
                 tillbaka
@@ -279,7 +276,7 @@ export const TripInfo = () => {
                 endIcon={<CreditScoreIcon />}
                 variant="contained"
                 onClick={handlePurchase}
-                style={{ background: "#FFA5A5", left: -75 }}
+                style={{ background: "#FFA5A5"/* , left: -75 */ }}
                 size="large"
               >
                 Gå till betalning

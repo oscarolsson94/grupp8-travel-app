@@ -59,8 +59,10 @@ export const TripInfo = () => {
         arrivalDate: formatDate(trip.arrivalTimeAndDate),
         arrivalTime: formatTime(trip.arrivalTimeAndDate),
         passengerType: ticketType,
+        ticketClass: ticketClass,
         price: price * multiplier,
         currentDate: Date(),
+        paymentLink: `${window.location.origin}/Payment/${bookingId}`,
       }
     );
   };

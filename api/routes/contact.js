@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     <hr>
       <ul>
       <li> Bokningsnummer: ${data.bookingNumber} </li>
-      <li> Bokad av ${data.firstName} ${data.lastName} </li>
+      <li> Bokad av: ${data.firstName} ${data.lastName} </li>
       <li> E-post: ${data.email} </li>
       </ul>
       <br />
@@ -48,10 +48,12 @@ router.post('/', (req, res) => {
       <h3>Din resa</h3>
       <hr>
       <ul>
-      <li> Från: ${data.fromLocation} – Till: ${data.toLocation} </li>
-      <li> Avgår: ${data.departureDate} ${data.departureTime}  
-      Framme: ${data.arrivalDate} ${data.arrivalTime}  </li>
-      <li> ${data.firstName} ${data.lastName}, ${data.passengerType} </li>
+      <li> Från: ${data.fromLocation} – Till: ${data.toLocation}</li>
+      <li> Avgår: ${data.departureDate} ${data.departureTime} </li>
+      <li> Avgår: ${data.arrivalDate} ${data.arrivalTime} </li>
+      ${data.arrivalDate} ${data.arrivalTime}  
+      <!--<li> ${data.firstName} ${data.lastName}, ${data.passengerType} </li>-->
+      <li> ${data.ticketClass}, ${data.passengerType} </li>
       </ul>
       <br />
 
@@ -61,9 +63,18 @@ router.post('/', (req, res) => {
       <li> Datum: ${data.currentDate} </li>
       <li> Orgnr: 1636456732 </li>
       </ul>
-      <h4 style = "text-align:right;"> Att betala ${data.price} SEK</h4>
-      <hr>
+      <h4 style = "text-align:right;"> Att betala: ${data.price} SEK</h4>
+      <br />
 
+      <h3>Betalning</h3>
+      <hr>
+      <ul>
+      <li> Att betala: ${data.price} SEK</li>
+      </ul>
+      <ul>
+      <li> <a href="${data.paymentLink}" target="_blank">Länk till betalning (ej implementerad).<a></li>
+      </ul>
+      <hr>
     `
   };
 

@@ -33,10 +33,10 @@ export const BookingItem = ({ booking }) => {
                     Avgår: {formatDate(booking.departureTimeAndDate)}
                     {` - ${booking.departureTimeAndDate.substr(11, 5)}`}
                 </Typography>
-                <Typography paddingRight={2}>
+                {/* <Typography paddingRight={2}>
                     Framme: {formatDate(booking.arrivalTimeAndDate)}
                     {` - ${booking.arrivalTimeAndDate.substr(11, 5)}`}
-                </Typography>
+                </Typography> */}
                 <Button
                     onClick={() => history.push(`/bookinginfo/${booking._id}`)}
                     disableElevation

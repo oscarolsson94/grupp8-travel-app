@@ -1,15 +1,5 @@
-import {
-  Button,
-  Divider,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, FormControl, InputLabel, MenuItem, Select,
+  Step, StepLabel, Stepper, Typography, } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { formatDate, formatTime } from "../utils/helpers";
@@ -54,11 +44,11 @@ export const TripInfo = () => {
     fetchData();
   }, [id, user.token]);
 
-  const handleBooking = async () => {
+  const sendConfirmationEmail = async (bookingId) => {
     await axios.post(
       `${process.env.REACT_APP_BACKEND_STARTING_URL}api/contact`,
       {
-        bookingNumber: Math.random().toString(9).substring(2, 8),
+        bookingNumber: bookingId,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -77,7 +67,6 @@ export const TripInfo = () => {
 
   const handlePurchase = async () => {
     try {
-      handleBooking();
       let res = await axios.post(
         `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings`,
         {
@@ -94,6 +83,7 @@ export const TripInfo = () => {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
+      sendConfirmationEmail(res.data._id);
       setSearchParams({});
       history.push(`/OrderConfirmation/${res.data._id}`);
     } catch (error) {

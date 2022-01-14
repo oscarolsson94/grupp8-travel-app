@@ -51,30 +51,19 @@ router.post('/', (req, res) => {
       <li> Från: ${data.fromLocation} – Till: ${data.toLocation}</li>
       <li> Avgår: ${data.departureDate} ${data.departureTime} </li>
       <li> Avgår: ${data.arrivalDate} ${data.arrivalTime} </li>
-      ${data.arrivalDate} ${data.arrivalTime}  
-      <!--<li> ${data.firstName} ${data.lastName}, ${data.passengerType} </li>-->
       <li> ${data.ticketClass}, ${data.passengerType} </li>
       </ul>
       <br />
 
-      <h3>Ditt kvitto</h3>
+      <h3>Ditt kvitto & Betalning</h3>
       <hr>
       <ul>
-      <li> Datum: ${data.currentDate} </li>
-      <li> Orgnr: 1636456732 </li>
+      <li> Bokning skapad: ${data.currentDate} </li>
       </ul>
       <h4 style = "text-align:right;"> Att betala: ${data.price} SEK</h4>
-      <br />
-
-      <h3>Betalning</h3>
-      <hr>
-      <ul>
-      <li> Att betala: ${data.price} SEK</li>
-      </ul>
       <ul>
       <li> <a href="${data.paymentLink}" target="_blank">Länk till betalning (ej implementerad).<a></li>
       </ul>
-      <hr>
     `
   };
 

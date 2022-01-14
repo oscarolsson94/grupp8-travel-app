@@ -115,7 +115,7 @@ export const TripInfo = () => {
         setPrice(PRICES.ADULT);
         break;
       default:
-        setPrice(0);
+        setPrice(0); // should probably throw or print an error here instead.
     }
   };
 

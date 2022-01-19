@@ -22,7 +22,6 @@ export const OrderConfirmation = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("hej");
     const fetchData = async () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_BACKEND_STARTING_URL}api/bookings/single/${id}`,

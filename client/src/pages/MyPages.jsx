@@ -46,27 +46,23 @@ export const MyPages = () => {
     if (!user.token) return <Redirect to="/login" />;
 
     return (
-        <div>
-            <Typography variant="h1" color="white">
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center"
+            }}
+        >
+            <Typography variant="h1" color="white" fontSize={60}>
                 Mina Sidor
             </Typography>
             <Typography variant="h2" color="white">
                 Mina bokningar
             </Typography>
-            <div style={containerStyle}>
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    {bookings.map((booking, i) => (
+
+            {bookings.map((booking, i) => (
                         <BookingItem key={i} booking={booking} />
                     ))}
-                </div>
-            </div>
         </div>
     );
 };

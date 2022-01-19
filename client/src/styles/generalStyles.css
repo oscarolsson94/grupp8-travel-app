@@ -121,6 +121,9 @@
   h2 {
     font-size: 2rem !important;
   }
+  h1 {
+    font-size: 3rem !important;
+  }
   .tripItemStyle {
     padding: 0 5px;
   }

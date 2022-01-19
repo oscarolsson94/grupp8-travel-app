@@ -11,11 +11,11 @@ import SendIcon from "@mui/icons-material/Send";
 import { TripItem } from "../components/Landing/TripItem";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import TimePicker from "@mui/lab/TimePicker";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import "../styles/generalStyles.css";
 import { CircularProgress, Grid } from "@mui/material";
 import { SearchContext } from "../contexts/SearchContext";
-import DateTimePicker from "@mui/lab/DateTimePicker";
-
 
 export const Landing = () => {
   const { user } = useContext(UserContext);
@@ -35,8 +35,10 @@ export const Landing = () => {
     searchParams.fromLocation || ""
   );
   const [toLocation, setToLocation] = useState(searchParams.toLocation || "");
-  const [date] = useState(searchParams.date || new Date());
+  const [date, setDate] = useState(searchParams.date || new Date());
   const [time, setTime] = useState(searchParams.time || new Date());
+  const [currentTime] = useState(searchParams.time || new Date());
+  const [currentDate] = useState(searchParams.date || new Date());
 
 
   const canSearchForTrips = () => fromLocation !== "" && toLocation !== "";
@@ -48,6 +50,28 @@ export const Landing = () => {
   const handleSearch = async () => {
     setLoading(true);
     let dateTime = combineDateAndTimeIntoISOString(date, time);
+
+    let currentDateTime = combineDateAndTimeIntoISOString(currentDate, currentTime);
+    let splitCurrentDate = currentDateTime.split("T");
+    let splitSelectedDate = dateTime.split("T");
+
+
+    // The past time only check and correct on the same day
+    if (splitCurrentDate[0] === splitSelectedDate[0]) {
+      console.log("Today date : ", splitCurrentDate[0]);
+      console.log("Selected date : ", splitSelectedDate[0]);
+
+      if (currentTime.getHours() > time.getHours()) {
+        console.log("Current hour : ", currentTime.getHours())
+        setTime(currentTime);
+        return;
+      }
+      else if ((currentTime.getHours() === time.getHours()) && (currentTime.getMinutes() > time.getMinutes())) {
+        console.log("Current Minutes : ", currentTime.getMinutes())
+        setTime(currentTime);
+        return;
+      }
+    }
 
 
     // The submit <Button> is disable if '!canSearchForTrips()' so we don't need another check in the frontend for
@@ -178,12 +202,22 @@ export const Landing = () => {
         </div>
         <div className="inputContainer">
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-
-            <DateTimePicker
+            <DesktopDatePicker
+              label="Datum"
+              disablePast
+              inputFormat="yyyy/MM/dd"
+              mask="____/__/__"
+              value={date}
+              onChange={(date) => setDate(date)}
+              renderInput={(params) =>
+                <TextField {...params}
+                  InputLabelProps={{ shrink: true }}
+                  inputProps={{ ...params.inputProps, readOnly: true, }}
+                />}
+            />
+            <TimePicker
               ampm={false}
-              label="Datum & Tid"
-              minDateTime={new Date()}
-             // minTime={new Date(2022,1, 15, currentTime.getHours())}
+              label="Tid"
               value={time}
               onChange={(time) => setTime(time)}
               renderInput={(params) =>

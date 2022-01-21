@@ -27,6 +27,12 @@
 - Create PR (Pull Request) when done and merge your branch into **staging**.
 - Once you have verified that no breaking changes have been introduced to **staging**, create a PR and merge **staging** into **main**.
 
+- Branches:
+    - **TESTING-BRANCH**: STD01
+    - **TESTING-BRANCH-NEW**: STD02
+    - **main**: latest changes with bug fixes ready before STD02 but not included in STD02 testing.
+    - **staging**: latest changes with bug fixes ready before STD02 but not included in STD02 testing.
+
 ## Important setup requirements
 - Clone the repository.
 

@@ -1,3 +1,6 @@
+### To use this file, install the "REST Client" extension for Visual Studio Code.
+### Note, all tests are outdated, the database data has been cleared. 
+
 POST http://localhost:3001/api/bookings/ HTTP/1.1
 content-type: application/json
 Authorization: Bearer REPLACE_WITH_JWT_TOKEN
@@ -5,25 +8,17 @@ Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 {
     "userEmail": "ab@example.com",
     "fromLocation": "Göteborg",
-    "departureTimeAndDate": "2021-12-23T06:53",
+    "departureTimeAndDate": { "$date": "2021-12-23T06:53:00Z" },
     "toLocation": "Stockholm",
-    "arrivalTimeAndDate": "2021-12-23T12:53",
+    "arrivalTimeAndDate": { "$date": "2021-12-23T12:53:00Z" },
     "passengerType": "Adult",
     "ticketClass": "1:st class",
     "price": 495,
-    "train": [
-        {
-            "advertisedTrainNumber": 188,
-            "trainCarNumber": 1,
-            "trainCarSeat": 35,
-            "trainCarSeatType": "Aisle"
-        }
-    ]
 }
 
 ### Test fetching a booking by userEmail with a token not valid for the specified booking id (e.g. booking belongs to another user). Expected: 403
 
-GET http://localhost:3001/api/bookings/dejv@sprintvall.se HTTP/1.1
+GET http://localhost:3001/api/bookings/example@example.com HTTP/1.1
 content-type: application/json
 Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 
@@ -65,7 +60,7 @@ Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 
 ### 
 
-GET http://localhost:3001/api/bookings/tilloskar@outlook.com HTTP/1.1
+GET http://localhost:3001/api/bookings/example2@example.com HTTP/1.1
 content-type: application/json
 Authorization: Bearer REPLACE_WITH_JWT_TOKEN
 
